@@ -1,0 +1,8 @@
+[
+{
+  "directory": "D:/code/plecs/github/plecs/notes/PLECS43_dll/p44/build",
+  "command": "C:\\app\\c_cpp\\mingw64\\bin\\gcc.exe -Dplecs_EXPORTS @CMakeFiles/plecs.dir/includes_C.rsp -g -std=gnu99 -o CMakeFiles\\plecs.dir\\dllmain.c.obj -c D:\\code\\plecs\\github\\plecs\\notes\\PLECS43_dll\\p44\\dllmain.c",
+  "file": "D:/code/plecs/github/plecs/notes/PLECS43_dll/p44/dllmain.c",
+  "output": "CMakeFiles/plecs.dir/dllmain.c.obj"
+}
+]

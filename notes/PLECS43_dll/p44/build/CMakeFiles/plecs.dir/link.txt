@@ -1,0 +1,3 @@
+C:\qp\qtools\bin\cmake.exe -E rm -f CMakeFiles\plecs.dir/objects.a
+C:\app\c_cpp\mingw64\bin\ar.exe qc CMakeFiles\plecs.dir/objects.a @CMakeFiles\plecs.dir\objects1.rsp
+C:\app\c_cpp\mingw64\bin\gcc.exe -g -shared -o libplecs.dll -Wl,--out-implib,libplecs.dll.a -Wl,--major-image-version,0,--minor-image-version,0 -Wl,--whole-archive CMakeFiles\plecs.dir/objects.a -Wl,--no-whole-archive @CMakeFiles\plecs.dir\linkLibs.rsp

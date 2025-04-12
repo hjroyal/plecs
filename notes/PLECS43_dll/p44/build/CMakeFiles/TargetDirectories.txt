@@ -1,0 +1,3 @@
+D:/code/plecs/github/plecs/notes/PLECS43_dll/p44/build/CMakeFiles/plecs.dir
+D:/code/plecs/github/plecs/notes/PLECS43_dll/p44/build/CMakeFiles/edit_cache.dir
+D:/code/plecs/github/plecs/notes/PLECS43_dll/p44/build/CMakeFiles/rebuild_cache.dir
