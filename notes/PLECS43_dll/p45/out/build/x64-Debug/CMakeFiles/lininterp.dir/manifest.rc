@@ -1,0 +1,2 @@
+#pragma code_page(65001)
+2 /* CREATEPROCESS_MANIFEST_RESOURCE_ID */ 24 /* RT_MANIFEST */ "D:/code/plecs/github/plecs/notes/PLECS43_dll/p45/out/build/x64-Debug/CMakeFiles/lininterp.dir/embed.manifest"

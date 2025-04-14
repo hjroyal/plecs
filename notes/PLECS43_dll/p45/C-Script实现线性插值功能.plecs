@@ -1,0 +1,339 @@
+Plecs {
+  Name          base64 "Qy1TY3JpcHTlrp7njrDnur/mgKfmj5LlgLzlip/og70="
+  Version       "4.9"
+  CircuitModel  "ContStateSpace"
+  StartTime     "0.0"
+  TimeSpan      "tend"
+  Timeout       ""
+  Solver        "radau"
+  MaxStep       "tend/100"
+  InitStep      "-1"
+  FixedStep     "1e-3"
+  Refine        "1"
+  ZCStepSize    "1e-9"
+  RelTol        "1e-3"
+  AbsTol        "-1"
+  TurnOnThreshold "0"
+  NonIdealSwitchResistance "1"
+  SyncFixedStepTasks "2"
+  UseSingleCommonBaseRate "2"
+  LossVariableLimitExceededMsg "3"
+  NegativeSwitchLossMsg "3"
+  DivisionByZeroMsg "3"
+  DatatypeOverflowMsg "2"
+  DatatypeInheritanceConflictMsg "1"
+  ContSampleTimeConflictMsg "1"
+  StiffnessDetectionMsg "2"
+  MaxConsecutiveZCs "1000"
+  AlgebraicLoopWithStateMachineMsg "2"
+  AssertionAction "1"
+  FixedPointDatatypeOverride "1"
+  InitializationCommands "x = 1:5;\ny = [1 2.5 3 2.5 1.5];\ntend = 1;"
+  InitialState  "1"
+  SystemState   "AAAACAAAAAADAAAAEgBUAGkAbQBlAFMAdABhAG0AcAAAABAAACWH/QIy9ar/A"
+"AAAFgBTAHQAYQB0AGUAVgBlAGMAdABvAHIAAAB/AAAAABlQbGVjc0FycmF5OjpEb3VibGVWZWN0b3"
+"IAAAAAET/fnzEjwoVHwBfZt84qlp3ANHVbUCghC0AVcxuRXZPVv/GXwIoheZrANI0Dur31Vb8kyO+"
+"fNjemv05oWAMXilM/iLB9z0KvhD/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/wAAAAAAAAP/AAAAAA"
+"AAAAAAAAAAAAAAAAAAAAAAAAP/AAAAAAAAAAAAAOAEMAbwBtAG0AZQBuAHQAAAAKAAAAAAQAYQBi"
+  TaskingMode   "1"
+  TaskConfigurations ""
+  CodeGenParameterInlining "2"
+  CodeGenFloatingPointFormat "2"
+  CodeGenAbsTimeUsageMsg "3"
+  CodeGenBaseName ""
+  CodeGenOutputDir ""
+  CodeGenExtraOpts ""
+  CodeGenTarget "Generic"
+  CodeGenTargetSettings ""
+  ExtendedMatrixPrecision "1"
+  MatrixSignificanceCheck "2"
+  RemoveUnusedStateSpaceOutputs "1"
+  EnableStateSpaceSplitting "2"
+  DisplayStateSpaceSplitting "1"
+  DiscretizationMethod "2"
+  ExternalModeSettings ""
+  AlgebraicLoopMethod "1"
+  AlgebraicLoopTolerance "1e-6"
+  ScriptsDialogGeometry ""
+  ScriptsDialogSplitterPos "0"
+  Schematic {
+    Location      [482, 25; 1440, 987]
+    ZoomFactor    1
+    SliderPosition [0, 0]
+    ShowBrowser   off
+    BrowserWidth  100
+    Component {
+      Type          CScript
+      Name          "C-Script"
+      Show          on
+      Position      [300, 330]
+      Direction     up
+      Flipped       off
+      LabelPosition south
+      Parameter {
+        Variable      "DialogGeometry"
+        Value         "[700 357 503 316]"
+        Show          off
+      }
+      Parameter {
+        Variable      "NumInputs"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "NumOutputs"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "NumContStates"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "NumDiscStates"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "NumZCSignals"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "DirectFeedthrough"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "Ts"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "TerminalBasedSampleTimes"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "Parameters"
+        Value         "x, y"
+        Show          off
+      }
+      Parameter {
+        Variable      "LangStandard"
+        Value         "2"
+        Show          off
+      }
+      Parameter {
+        Variable      "GnuExtensions"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "RuntimeCheck"
+        Value         "2"
+        Show          off
+      }
+      Parameter {
+        Variable      "HighlightLevel"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "Declarations"
+        Value         "#include <stdlib.h>\n"
+"#define LINEAR_INTERPOLATION(X1, Y1, X2, Y2, X) ( (Y2-Y1)/(X2-X1)*(X-X1) + Y1"
+" )\n"
+"\n"
+"#define VECTOR_LENGTH ( ParamDim(0, 0)*ParamDim(0, 1) )\n"
+"\n"
+"#define X(i) ParamRealData(0, i)\n"
+"#define Y(i) ParamRealData(1, i)\n"
+"\n"
+"double *x;\n"
+"double *y;\n"
+"\n"
+"int getIndex(double *x, int vectorLength, double xValue);\n"
+"\n"
+"double lininterp(double *x, double *y, int vectorLength, double xValue)\n"
+"{\n"
+"\tint index = getIndex(x, vectorLength, xValue);\n"
+"\tif(index == vectorLength - 1)\n"
+"\t\treturn LINEAR_INTERPOLATION(x[index-1], y[index-1], x[index], y[index], x"
+"Value);\n"
+"\telse\n"
+"\t\treturn LINEAR_INTERPOLATION(x[index], y[index], x[index+1], y[index+1], x"
+"Value);\n"
+"}\n"
+"\n"
+"int getIndex(double *x, int vectorLength, double xValue)\n"
+"{\n"
+"\tint minIndex = 0;\n"
+"\tint maxIndex = vectorLength - 1;\n"
+"\tint middleIndex;\n"
+"\t\n"
+"\tif(xValue < x[minIndex])\n"
+"\t\treturn minIndex;\n"
+"\telse if(xValue > x[maxIndex])\n"
+"\t\treturn vectorLength - 1;\n"
+"\t\t\n"
+"\twhile(1)\n"
+"\t{\n"
+"\t\tif(maxIndex - minIndex <= 1)\n"
+"\t\t\treturn minIndex;\n"
+"\t\tmiddleIndex = (minIndex + maxIndex)/2;\n"
+"\t\tif(x[middleIndex] > xValue)\n"
+"\t\t\tmaxIndex = middleIndex;\n"
+"\t\telse\n"
+"\t\t\tminIndex = middleIndex;\n"
+"\t}\n"
+"}"
+        Show          off
+      }
+      Parameter {
+        Variable      "StartFcn"
+        Value         "x = (double *)calloc(VECTOR_LENGTH, sizeof(double));\n"
+"y = (double *)calloc(VECTOR_LENGTH, sizeof(double));\n"
+"\n"
+"for(int i=0; i<VECTOR_LENGTH; i++)\n"
+"{\n"
+"\tx[i] = X(i);\n"
+"\ty[i] = Y(i);\n"
+"}"
+        Show          off
+      }
+      Parameter {
+        Variable      "OutputFcn"
+        Value         "Output(0) = lininterp(x, y, VECTOR_LENGTH, Input(0));"
+        Show          off
+      }
+      Parameter {
+        Variable      "UpdateFcn"
+        Value         ""
+        Show          off
+      }
+      Parameter {
+        Variable      "DerivativeFcn"
+        Value         ""
+        Show          off
+      }
+      Parameter {
+        Variable      "TerminateFcn"
+        Value         "if(x)\n"
+"{\n"
+"\tfree(x);\n"
+"\tx = NULL;\n"
+"}\n"
+"if(y)\n"
+"{\n"
+"\tfree(y);\n"
+"\ty = NULL;\n"
+"}"
+        Show          off
+      }
+      Parameter {
+        Variable      "StoreCustomStateFcn"
+        Value         ""
+        Show          off
+      }
+      Parameter {
+        Variable      "RestoreCustomStateFcn"
+        Value         ""
+        Show          off
+      }
+    }
+    Component {
+      Type          Constant
+      Name          "Constant"
+      Show          on
+      Position      [210, 330]
+      Direction     right
+      Flipped       off
+      LabelPosition south
+      Frame         [-20, -10; 20, 10]
+      Parameter {
+        Variable      "Value"
+        Value         "8"
+        Show          off
+      }
+      Parameter {
+        Variable      "DataType"
+        Value         "10"
+        Show          off
+      }
+    }
+    Component {
+      Type          Scope
+      Name          "Scope"
+      Show          on
+      Position      [390, 330]
+      Direction     up
+      Flipped       off
+      LabelPosition south
+      Location      [482, 25; 1440, 1041]
+      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
+"G0AQQByAGUAYQAAAAAA/////wAAADUA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
+"///wAAAGcA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABnAP///wAAAAMAAAO+AAAAcPw"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAAA74AAABPAP///wAAA74AAANpAAAA"
+"BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
+"AAAAA=="
+      SavedViews    "AAAAAgAAAAA="
+      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":106,\"Labels\":[],"
+"\"VisualIdxs\":[]}"
+      PlotPalettes  "AAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      Axes          "1"
+      TimeRange     "0.0"
+      ScrollingMode "1"
+      SingleTimeAxis "1"
+      Open          "0"
+      Ts            "-1"
+      SampleLimit   "0"
+      XAxisLabel    ""
+      ShowLegend    "1"
+      Axis {
+        Name          ""
+        AutoScale     1
+        MinValue      0
+        MaxValue      1
+        Signals       {}
+        SignalTypes   [ ]
+        Untangle      0
+        KeepBaseline  off
+        BaselineValue 0
+      }
+      Fourier {
+        SingleXAxis       on
+        AxisLabel         "Frequency"
+        Scaling           0
+        PhaseDisplay      0
+        ShowFourierLegend off
+        Axis {
+          Name          ""
+          AutoScale     1
+          MinValue      0
+          MaxValue      1
+          Signals       {}
+          Untangle      0
+          KeepBaseline  off
+          BaselineValue 0
+        }
+      }
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Constant"
+      SrcTerminal   1
+      DstComponent  "C-Script"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "C-Script"
+      SrcTerminal   2
+      DstComponent  "Scope"
+      DstTerminal   1
+    }
+  }
+}
+DemoSignature "ntGmJa8FnZ6k/oCHjhRThnM4FG+XNiwK/gcKC0U6GfE="

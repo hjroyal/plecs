@@ -1,0 +1,8 @@
+[
+{
+  "directory": "D:/code/plecs/github/plecs/notes/PLECS43_dll/p45/build",
+  "command": "C:\\app\\c_cpp\\mingw64\\bin\\gcc.exe -Dlininterp_EXPORTS @CMakeFiles/lininterp.dir/includes_C.rsp -g -std=gnu99 -o CMakeFiles\\lininterp.dir\\lininterp.c.obj -c D:\\code\\plecs\\github\\plecs\\notes\\PLECS43_dll\\p45\\lininterp.c",
+  "file": "D:/code/plecs/github/plecs/notes/PLECS43_dll/p45/lininterp.c",
+  "output": "CMakeFiles/lininterp.dir/lininterp.c.obj"
+}
+]

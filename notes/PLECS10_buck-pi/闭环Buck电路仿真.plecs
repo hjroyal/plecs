@@ -55,8 +55,8 @@ Plecs {
   ScriptsDialogGeometry ""
   ScriptsDialogSplitterPos "0"
   Schematic {
-    Location      [0, 23; 1440, 812]
-    ZoomFactor    1.30957
+    Location      [-1920, 216; -384, 968]
+    ZoomFactor    1.14436
     SliderPosition [0, 0]
     ShowBrowser   off
     BrowserWidth  100
@@ -221,15 +221,15 @@ Plecs {
       Direction     up
       Flipped       off
       LabelPosition south
-      Location      [482, 25; 1440, 1021]
+      Location      [0, 23; 1536, 796]
       State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
 "G0AQQByAGUAYQAAAAAA/////wAAADUA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
 "///wAAAGcA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABnAP///wAAAAMAAAAAAAAAAPw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABPAP///wAAA74AAAPJAAAA"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABPAP///wAABgAAAALqAAAA"
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
       SavedViews    "AAAAAgAAAAA="
-      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":147,\"Labels\":[],"
+      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":164,\"Labels\":[],"
 "\"VisualIdxs\":[]}"
       PlotPalettes  "AAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
       Axes          "1"
@@ -311,27 +311,23 @@ Plecs {
       Direction     up
       Flipped       off
       LabelPosition south
-      Location      [640, 280; 990, 507]
+      Location      [0, 23; 1536, 796]
       State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAAFwA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGYA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABmAP///wAAAAMAAAAAAAAAAPw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABQAP///wAAAV4AAADIAAAA"
+"G0AQQByAGUAYQAAAAAA/////wAAAF0A////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
+"///wAAAGcA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABnAP///wAAAAMAAAAAAAAAAPw"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABPAP///wAABgAAAALqAAAA"
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
       SavedViews    "AAAAAgAAAAA="
-      HeaderState   "AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAL/gMAAAAJAAAAC"
-"AAAAGQAAAAJAAAAZAAAAAQAAABkAAAABQAAAGQAAAAGAAAAZAAAAAcAAABkAAAAAQAAAGQAAAACAA"
-"AAZAAAAAMAAABkAAAAWgAAAAsBAAABAAAAAAAAAAAAAAAAZP////8AAACBAAAAAAAAAAsAAABBAAA"
-"AAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAA"
-"AAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAA"
-"AAZAAAAAQAAAAAAAAPoAA=="
+      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":154,\"Labels\":[],"
+"\"VisualIdxs\":[]}"
       PlotPalettes  "AAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA"
 "AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
       Axes          "2"
       TimeRange     "0"
       ScrollingMode "1"
       SingleTimeAxis "1"
-      Open          "0"
+      Open          "1"
       Ts            "-1"
       SampleLimit   "0"
       XAxisLabel    ""
@@ -549,26 +545,22 @@ Plecs {
       Direction     up
       Flipped       off
       LabelPosition south
-      Location      [961, 31; 1919, 1017]
+      Location      [0, 23; 1536, 796]
       State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAADQA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGYA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABmAP///wAAAAMAAAAAAAAAAPw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABQAP///wAAA74AAAO/AAAA"
+"G0AQQByAGUAYQAAAAAA/////wAAADUA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
+"///wAAAGcA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABnAP///wAAAAMAAAYAAAAAcPw"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAABgAAAABPAP///wAABgAAAAJ2AAAA"
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
       SavedViews    "AAAAAgAAAAA="
-      HeaderState   "AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAL/gMAAAAJAAAAC"
-"AAAAGQAAAAJAAAAZAAAAAQAAABkAAAABQAAAGQAAAAGAAAAZAAAAAcAAABkAAAAAQAAAGQAAAACAA"
-"AAZAAAAAMAAABkAAAAjwAAAAsBAAABAAAAAAAAAAAAAAAAZP////8AAACBAAAAAAAAAAsAAAB2AAA"
-"AAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAA"
-"AAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAA"
-"AAZAAAAAQAAAAAAAAPoAA=="
+      HeaderState   "{\"DefaultSecSize\":100,\"FirstSecSize\":119,\"Labels\":["
+"],\"VisualIdxs\":[]}"
       PlotPalettes  "AAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
       Axes          "1"
       TimeRange     "0.0"
       ScrollingMode "1"
       SingleTimeAxis "1"
-      Open          "0"
+      Open          "1"
       Ts            "-1"
       SampleLimit   "0"
       XAxisLabel    ""
@@ -818,6 +810,23 @@ Plecs {
         DstTerminal   1
       }
     }
+    Annotation {
+      Name          base64 "PGh0bWw+PGJvZHk+CjxwPumXreeOr+aOp+WItuezu+e7n++8mu"
+"ajgOa1i+ivr+W3ru+8jOS/ruato+ivr+W3ruOAgjwvcD4KPHA+IDwvcD4KPHA+5a+56K+v5beu5L+"
+"h5Y+36L+b6KGM5o6n5Yi277yM6LSf5Y+N6aaI5p6E5oiQ6Zet546v44CCPC9wPgo8cD7ns7vnu5/l"
+"hYPku7blj4LmlbDphY3lkIjkuI3lvZPvvIzlrrnmmJPkuqfnlJ/pnIfojaHvvIzlrZjlnKg8c3Bhb"
+"iBzdHlsZT0iIGZvbnQtd2VpZ2h0OjcwMDsiPueos+WumuaAp+mXrumimDwvc3Bhbj7jgII8L3A+Cj"
+"xwPuW9k+ezu+e7n+eos+WumuaXtu+8jOiDveWkn+WvueWklueVjOaJsOWKqOWSjOezu+e7n+WGhem"
+"DqOWPguaVsOWPmOWMluW8lei1t+eahOivr+W3rjxzcGFuIHN0eWxlPSIgZm9udC13ZWlnaHQ6NzAw"
+"OyI+6Ieq5Yqo57qg5q2jPC9zcGFuPuOAgjwvcD4KPHA+IDwvcD4KPHA+5o6n5Yi257O757uf5Z+65"
+"pys6KaB5rGC77ya56iz5a6a5oCn44CB5Yqo5oCB54m55oCn44CB56iz5oCB54m55oCn44CC77yI56"
+"iz5YeG5b+r77yJPC9wPgo8cD4gPC9wPgo8cD7nqLPlrprmgKfvvJrlvZPlj4LmlbDlj5HnlJ/lj5j"
+"ljJbvvIzog73nqLPlrprlt6XkvZzjgILlrZjlnKjkuIDlrprnqLPlrproo5Xph4/jgII8L3A+Cjxw"
+"PiA8L3A+CjxwPuWKqOaAgeeJueaAp++8mui/h+a4oei/h+eoi+aXtumXtOefre+8jOi/h+eoi+W5s"
+"+eos++8jOaMr+iNoeW5heW6puWwj+OAgjwvcD4KPHA+IDwvcD4KPHA+56iz5oCB54m55oCn77ya6Z"
+"2Z5oCB6K+v5beu77yM5Y+N5bqU5o6n5Yi257K+5bqm44CCPC9wPjwvYm9keT48L2h0bWw+"
+      Position      [285, 100]
+    } 
   }
   Analysis {
     Type          ImpulseResponseAnalysis
@@ -839,4 +848,4 @@ Plecs {
     MaxNumberOfThreads "-1"
   }
 }
-DemoSignature "5hwC/AK+3EH2qEWvKqY778MYKqfH8zbIEM1vB88O56E="
+DemoSignature "9klh4FIzZpGRB757tjJf1wcUx6lAD86RalgrUyX+ov8="

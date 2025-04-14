@@ -22,3 +22,17 @@ void plecsOutput(struct SimulationState *aState) {
 #endif
 }
 void plecsStart(struct SimulationState *aState) { aState->states[0] = 0; }
+
+/**note
+使用DLL模块实现离散传递函数
+
+Y(z)/U(z) = 1/(z-1)
+
+z*Y(z) - Y(z) = U(z)
+
+Y(z) - z^(-1)Y(z) = z^(-1)U(z)  //z变换
+
+y(n)- y(n-1) = u(n-1)
+
+
+*/

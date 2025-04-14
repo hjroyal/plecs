@@ -1,9 +1,9 @@
 Plecs {
   Name          base64 "5byA546vQnVja+eUtei3r+S7v+ecnw=="
-  Version       "4.1"
+  Version       "4.9"
   CircuitModel  "ContStateSpace"
   StartTime     "0.0"
-  StopTime      "tend"
+  TimeSpan      "tend"
   Timeout       ""
   Solver        "dopri"
   MaxStep       "1/fs/100"
@@ -14,22 +14,28 @@ Plecs {
   RelTol        "1e-3"
   AbsTol        "-1"
   TurnOnThreshold "0"
+  NonIdealSwitchResistance "1"
   SyncFixedStepTasks "2"
   UseSingleCommonBaseRate "2"
   LossVariableLimitExceededMsg "3"
   NegativeSwitchLossMsg "3"
   DivisionByZeroMsg "3"
+  DatatypeOverflowMsg "2"
+  DatatypeInheritanceConflictMsg "1"
+  ContSampleTimeConflictMsg "1"
   StiffnessDetectionMsg "2"
   MaxConsecutiveZCs "1000"
+  AlgebraicLoopWithStateMachineMsg "2"
   AssertionAction "1"
+  FixedPointDatatypeOverride "1"
   InitializationCommands "Vin = 48;\nLf = 1.5e-3;\nCf = 100e-6;\nRLd = 10;\ndb"
 " = 0.5;\nfs = 10e3;\ntend = 1/fs*1e3;"
   InitialState  "1"
   SystemState   ""
+  TaskingMode   "1"
+  TaskConfigurations ""
   CodeGenParameterInlining "2"
-  CodeGenInliningExceptions "AAAACwAAAAAA"
   CodeGenFloatingPointFormat "2"
-  CodeGenIntegerWordSize "32"
   CodeGenAbsTimeUsageMsg "3"
   CodeGenBaseName ""
   CodeGenOutputDir ""
@@ -38,15 +44,18 @@ Plecs {
   CodeGenTargetSettings ""
   ExtendedMatrixPrecision "1"
   MatrixSignificanceCheck "2"
+  RemoveUnusedStateSpaceOutputs "1"
   EnableStateSpaceSplitting "2"
   DisplayStateSpaceSplitting "1"
   DiscretizationMethod "2"
   ExternalModeSettings ""
   AlgebraicLoopMethod "1"
   AlgebraicLoopTolerance "1e-6"
+  ScriptsDialogGeometry ""
+  ScriptsDialogSplitterPos "0"
   Schematic {
-    Location      [961, 31; 1919, 993]
-    ZoomFactor    1
+    Location      [-1920, 216; -384, 968]
+    ZoomFactor    1.14437
     SliderPosition [0, 0]
     ShowBrowser   off
     BrowserWidth  100
@@ -57,6 +66,7 @@ Plecs {
       Position      [500, 385]
       Direction     down
       Flipped       on
+      LabelPosition west
       Parameter {
         Variable      "C"
         Value         "Cf"
@@ -75,6 +85,7 @@ Plecs {
       Position      [550, 385]
       Direction     up
       Flipped       off
+      LabelPosition east
       Parameter {
         Variable      "R"
         Value         "RLd"
@@ -88,6 +99,7 @@ Plecs {
       Position      [240, 300]
       Direction     right
       Flipped       off
+      LabelPosition south
       Parameter {
         Variable      "Min"
         Value         "0"
@@ -121,6 +133,7 @@ Plecs {
       Position      [305, 265]
       Direction     right
       Flipped       off
+      LabelPosition south
     }
     Component {
       Type          DCVoltageSource
@@ -129,6 +142,7 @@ Plecs {
       Position      [325, 380]
       Direction     down
       Flipped       on
+      LabelPosition east
       Parameter {
         Variable      "V"
         Value         "Vin"
@@ -142,6 +156,7 @@ Plecs {
       Position      [455, 340]
       Direction     left
       Flipped       off
+      LabelPosition north
       Parameter {
         Variable      "L"
         Value         "Lf"
@@ -160,6 +175,7 @@ Plecs {
       Position      [415, 380]
       Direction     down
       Flipped       off
+      LabelPosition east
       Parameter {
         Variable      "Vf"
         Value         "0"
@@ -176,41 +192,23 @@ Plecs {
         Show          off
       }
       Parameter {
+        Variable      "Rth"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
         Variable      "T_init"
         Value         "0"
         Show          off
       }
-    }
-    Component {
-      Type          Igbt
-      Name          "IGBT1"
-      Show          off
-      Position      [370, 340]
-      Direction     right
-      Flipped       on
       Parameter {
-        Variable      "Vf"
+        Variable      "SwitchModel"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "f_grid"
         Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "Ron"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "s_init"
-        Value         "0"
-        Show          off
-      }
-      Parameter {
-        Variable      "thermal"
-        Value         "file:FF450R12ME4"
-        Show          off
-      }
-      Parameter {
-        Variable      "T_init"
-        Value         "19"
         Show          off
       }
     }
@@ -221,6 +219,12 @@ Plecs {
       Position      [360, 500]
       Direction     right
       Flipped       off
+      LabelPosition south
+      Probe {
+        Component     "R1"
+        Path          ""
+        Signals       {"Resistor voltage"}
+      }
     }
     Component {
       Type          Scope
@@ -229,6 +233,7 @@ Plecs {
       Position      [445, 500]
       Direction     up
       Flipped       off
+      LabelPosition south
       Location      [640, 280; 990, 507]
       State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
 "G0AQQByAGUAYQAAAAAA/////wAAADQA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
@@ -252,6 +257,7 @@ Plecs {
       Ts            "-1"
       SampleLimit   "0"
       XAxisLabel    ""
+      ShowLegend    "1"
       Axis {
         Name          ""
         AutoScale     1
@@ -264,10 +270,11 @@ Plecs {
         BaselineValue 0
       }
       Fourier {
-        SingleXAxis   on
-        AxisLabel     "Frequency"
-        Scaling       0
-        PhaseDisplay  0
+        SingleXAxis       on
+        AxisLabel         "Frequency"
+        Scaling           0
+        PhaseDisplay      0
+        ShowFourierLegend off
         Axis {
           Name          ""
           AutoScale     1
@@ -287,6 +294,7 @@ Plecs {
       Position      [440, 460]
       Direction     right
       Flipped       off
+      LabelPosition south
       Parameter {
         Variable      "ShowReference"
         Value         "1"
@@ -302,15 +310,19 @@ Plecs {
       Type          Constant
       Name          "Constant"
       Show          on
-      Position      [125, 260]
+      Position      [100, 260]
       Direction     right
       Flipped       off
+      LabelPosition south
       Frame         [-10, -10; 10, 10]
-      LabelPosition [0, 13]
-      LabelAlign    up
       Parameter {
         Variable      "Value"
         Value         "0.5"
+        Show          off
+      }
+      Parameter {
+        Variable      "DataType"
+        Value         "10"
         Show          off
       }
     }
@@ -321,6 +333,7 @@ Plecs {
       Position      [175, 260]
       Direction     right
       Flipped       off
+      LabelPosition south
       Parameter {
         Variable      "ShowInput"
         Value         "2"
@@ -334,30 +347,28 @@ Plecs {
       Position      [475, 240]
       Direction     up
       Flipped       off
-      Location      [640, 280; 990, 507]
+      LabelPosition south
+      Location      [0, 23; 1536, 796]
       State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
-"G0AQQByAGUAYQAAAAAA/////wAAAFwA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
-"///wAAAGYA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABmAP///wAAAAMAAAAAAAAAAPw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABQAP///wAAAV4AAADIAAAA"
+"G0AQQByAGUAYQAAAAAA/////wAAAF0A////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
+"///wAAAGcA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABnAP///wAAAAMAAAAAAAAAAPw"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAP////8AAABPAP///wAABgAAAALqAAAA"
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
       SavedViews    "AAAAAgAAAAA="
-      HeaderState   "AAAA/wAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAAAAL/gMAAAAJAAAAC"
-"AAAAGQAAAAJAAAAZAAAAAQAAABkAAAABQAAAGQAAAAGAAAAZAAAAAcAAABkAAAAAQAAAGQAAAACAA"
-"AAZAAAAAMAAABkAAAApQAAAAsBAAABAAAAAAAAAAAAAAAAZP////8AAACBAAAAAAAAAAsAAABBAAA"
-"AAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAA"
-"AAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAA"
-"ABkAAAAAQAAAAAAAAPoAA=="
+      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":154,\"Labels\":[],"
+"\"VisualIdxs\":[]}"
       PlotPalettes  "AAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA"
 "AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
       Axes          "2"
       TimeRange     "0"
       ScrollingMode "1"
       SingleTimeAxis "1"
-      Open          "0"
+      Open          "1"
       Ts            "-1"
       SampleLimit   "0"
       XAxisLabel    ""
+      ShowLegend    "1"
       Axis {
         Name          ""
         AutoScale     1
@@ -381,10 +392,11 @@ Plecs {
         BaselineValue 0
       }
       Fourier {
-        SingleXAxis   on
-        AxisLabel     "Frequency"
-        Scaling       0
-        PhaseDisplay  0
+        SingleXAxis       on
+        AxisLabel         "Frequency"
+        Scaling           0
+        PhaseDisplay      0
+        ShowFourierLegend off
         Axis {
           Name          ""
           AutoScale     1
@@ -414,9 +426,49 @@ Plecs {
       Position      [385, 235]
       Direction     right
       Flipped       off
+      LabelPosition south
       Parameter {
         Variable      "Width"
         Value         "2"
+        Show          off
+      }
+    }
+    Component {
+      Type          Igbt
+      Name          "IGBT1"
+      Show          on
+      Position      [370, 340]
+      Direction     right
+      Flipped       on
+      LabelPosition south
+      Parameter {
+        Variable      "Vf"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "Ron"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "s_init"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "thermal"
+        Value         ""
+        Show          off
+      }
+      Parameter {
+        Variable      "Rth"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "T_init"
+        Value         ""
         Show          off
       }
     }
@@ -555,18 +607,20 @@ Plecs {
         DstTerminal   2
       }
     }
-  }
-  ProbeBlock {
-    Tag           base64 "5byA546vQnVja+eUtei3r+S7v+ecny9Qcm9iZQ=="
-    Probe {
-      Component     "R1"
-      Path          ""
-      Signals       {"Resistor voltage"}
-    }
+    Annotation {
+      Name          base64 "PGh0bWw+PGJvZHk+CjxwPuW8gOaNouaOp+WItuezu+e7n++8mu"
+"iiq+aOp+WItumHj+WPquWPl+aOp+S6juaOp+WItumHj++8jOWvueaOp+WItumHj+aXoOWPjeS9nOe"
+"UqOOAgjwvcD4KPHA+IDwvcD4KPHA+6KKr5o6n6YeP77ya6L6T5Ye655S15Y6LPC9wPgo8cD7mjqfl"
+"iLbph4/vvJrljaDnqbrmr5Q8L3A+CjxwPiA8L3A+CjxwPuaOp+WItueyvuW6puWPluWGs+S6juaOp"
+"+WItuWZqOOAgeiiq+aOp+WvueixoeWPguaVsOeos+WumuaAp++8jOWuueaYk+WPl+W5suaJsOOAgj"
+"wvcD4KPHA+IDwvcD4KPHA+IDwvcD48L2JvZHk+PC9odG1sPg=="
+      Position      [220, 105]
+    } 
   }
   Analysis {
     Type          ImpulseResponseAnalysis
     Name          "Impulse Response Analysis"
+    ShowLegend    "1"
     TimeSpan      "1/fs"
     StartTime     "0"
     Tolerance     "1e-4"
@@ -580,6 +634,7 @@ Plecs {
     JacobianPerturbation "1e-4"
     JacobianCalculation "2"
     InitCycles    "0"
+    MaxNumberOfThreads "-1"
   }
 }
-DemoSignature "6VBhRTlp2SSEpysHmJV7TkKqPCN32wb3JX1FXJUbJaM="
+DemoSignature "1n/Uw9QlX4fG2v2ScbxcpLLTp42zOrYZr2+8wWCl2L0="

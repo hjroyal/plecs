@@ -54,7 +54,7 @@ Plecs {
   ScriptsDialogSplitterPos "0"
   Schematic {
     Location      [0, 25; 1440, 814]
-    ZoomFactor    1
+    ZoomFactor    1.14437
     SliderPosition [0, 0]
     ShowBrowser   off
     BrowserWidth  100
@@ -62,7 +62,7 @@ Plecs {
       Type          Dll
       Name          "DLL"
       Show          on
-      Position      [630, 355]
+      Position      [640, 355]
       Direction     right
       Flipped       off
       LabelPosition south
@@ -156,23 +156,23 @@ Plecs {
       Direction     up
       Flipped       off
       LabelPosition south
-      Location      [0, 25; 1440, 875]
+      Location      [18, 284; 1458, 1144]
       State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
 "G0AQQByAGUAYQAAAAAA/////wAAAF0A////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
 "///wAAAGcA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABnAP///wAAAAMAAAWgAAAApPw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAABaAAAABPAP///wAABaAAAAKPAAAA"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAABaAAAABPAP///wAABaAAAAKZAAAA"
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
       SavedViews    "AAAAAgAAAAA="
-      HeaderState   "{\"DefaultSecSize\":100,\"FirstSecSize\":172,\"Labels\":["
-"],\"VisualIdxs\":[]}"
+      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":172,\"Labels\":[],"
+"\"VisualIdxs\":[]}"
       PlotPalettes  "AAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAA"
 "AEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
       Axes          "2"
       TimeRange     "0"
       ScrollingMode "1"
       SingleTimeAxis "1"
-      Open          "0"
+      Open          "1"
       Ts            "-1"
       SampleLimit   "0"
       XAxisLabel    "Time / s"
@@ -295,4 +295,4 @@ Plecs {
     } 
   }
 }
-DemoSignature "0lppEOPrqsD2zRM2sBwvvMa98VLku9hYyHa7Za19/Fs="
+DemoSignature "fIAZQrLbWuHSkxa/RFGhR3oG1Qw6mLtCZiUClZRyU08="

@@ -1,0 +1,3 @@
+C:\qp\qtools\bin\cmake.exe -E rm -f CMakeFiles\lininterp.dir/objects.a
+C:\app\c_cpp\mingw64\bin\ar.exe qc CMakeFiles\lininterp.dir/objects.a @CMakeFiles\lininterp.dir\objects1.rsp
+C:\app\c_cpp\mingw64\bin\gcc.exe -g -shared -o liblininterp.dll -Wl,--out-implib,liblininterp.dll.a -Wl,--major-image-version,0,--minor-image-version,0 -Wl,--whole-archive CMakeFiles\lininterp.dir/objects.a -Wl,--no-whole-archive @CMakeFiles\lininterp.dir\linkLibs.rsp
