@@ -1,0 +1,404 @@
+Plecs {
+  Name          "SVPWM"
+  Version       "4.9"
+  CircuitModel  "ContStateSpace"
+  StartTime     "0.0"
+  TimeSpan      "tend"
+  Timeout       ""
+  Solver        "dopri"
+  MaxStep       "1/fs/100"
+  InitStep      "-1"
+  FixedStep     "1e-3"
+  Refine        "1"
+  ZCStepSize    "1e-9"
+  RelTol        "1e-3"
+  AbsTol        "-1"
+  TurnOnThreshold "0"
+  NonIdealSwitchResistance "1"
+  SyncFixedStepTasks "2"
+  UseSingleCommonBaseRate "2"
+  LossVariableLimitExceededMsg "3"
+  NegativeSwitchLossMsg "3"
+  DivisionByZeroMsg "3"
+  DatatypeOverflowMsg "2"
+  DatatypeInheritanceConflictMsg "1"
+  ContSampleTimeConflictMsg "1"
+  StiffnessDetectionMsg "2"
+  MaxConsecutiveZCs "1000"
+  AlgebraicLoopWithStateMachineMsg "2"
+  AssertionAction "1"
+  FixedPointDatatypeOverride "1"
+  InitializationCommands "fs = 10e3;\nfg = 50;\ntend = 1/fg*4;"
+  InitialState  "1"
+  SystemState   ""
+  TaskingMode   "1"
+  TaskConfigurations ""
+  CodeGenParameterInlining "2"
+  CodeGenFloatingPointFormat "2"
+  CodeGenAbsTimeUsageMsg "3"
+  CodeGenBaseName ""
+  CodeGenOutputDir ""
+  CodeGenExtraOpts ""
+  CodeGenTarget "Generic"
+  CodeGenTargetSettings ""
+  ExtendedMatrixPrecision "1"
+  MatrixSignificanceCheck "2"
+  RemoveUnusedStateSpaceOutputs "1"
+  EnableStateSpaceSplitting "2"
+  DisplayStateSpaceSplitting "1"
+  DiscretizationMethod "2"
+  ExternalModeSettings ""
+  AlgebraicLoopMethod "1"
+  AlgebraicLoopTolerance "1e-6"
+  ScriptsDialogGeometry ""
+  ScriptsDialogSplitterPos "0"
+  Schematic {
+    Location      [0, 23; 1440, 812]
+    ZoomFactor    1.96257
+    SliderPosition [0, 0]
+    ShowBrowser   off
+    BrowserWidth  100
+    Component {
+      Type          CScript
+      Name          "C-Script"
+      Show          on
+      Position      [280, 230]
+      Direction     up
+      Flipped       off
+      LabelPosition south
+      Parameter {
+        Variable      "DialogGeometry"
+        Value         "[238 269 724 316]"
+        Show          off
+      }
+      Parameter {
+        Variable      "NumInputs"
+        Value         "3"
+        Show          off
+      }
+      Parameter {
+        Variable      "NumOutputs"
+        Value         "3"
+        Show          off
+      }
+      Parameter {
+        Variable      "NumContStates"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "NumDiscStates"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "NumZCSignals"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "DirectFeedthrough"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "Ts"
+        Value         "1/fs"
+        Show          off
+      }
+      Parameter {
+        Variable      "TerminalBasedSampleTimes"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "Parameters"
+        Value         "fs"
+        Show          off
+      }
+      Parameter {
+        Variable      "LangStandard"
+        Value         "2"
+        Show          off
+      }
+      Parameter {
+        Variable      "GnuExtensions"
+        Value         "1"
+        Show          off
+      }
+      Parameter {
+        Variable      "RuntimeCheck"
+        Value         "2"
+        Show          off
+      }
+      Parameter {
+        Variable      "HighlightLevel"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "Declarations"
+        Value         "#include <math.h>\n"
+"#include <stdio.h>\n"
+"#define fs ParamRealData(0, 0)\n"
+"#define Vin Input(0)\n"
+"#define Valpha Input(1)\n"
+"#define Vbeta Input(2)\n"
+"#define M_PI 3.141592653\n"
+"\n"
+"double vm, localAlpha;\n"
+"\n"
+"double Tx, Ty, T0;\n"
+"\n"
+"int getSector(double valpha, double vbeta, double *vm, double *localAlpha)\n"
+"{\n"
+"\tdouble globalAlpha = atan2(vbeta, valpha);\n"
+"\tif(globalAlpha < 0)\n"
+"\t{\n"
+"\t\tglobalAlpha += 2*M_PI;\n"
+"\t}\n"
+"\tint sector = floor( globalAlpha/(M_PI/3) );\n"
+"\t*vm = sqrt(valpha*valpha + vbeta*vbeta);\n"
+"\t*localAlpha = globalAlpha - sector*M_PI/3;\n"
+"\treturn sector;\n"
+"}"
+        Show          off
+      }
+      Parameter {
+        Variable      "StartFcn"
+        Value         ""
+        Show          off
+      }
+      Parameter {
+        Variable      "OutputFcn"
+        Value         "if(IsSampleHit(0))\n"
+"{\n"
+"\tint sector = getSector(Valpha, Vbeta, &vm, &localAlpha);\n"
+"\tprintf(\"sector = %d\\n\", sector);\n"
+"\tTx = sqrt(3)/fs*vm*cos(localAlpha + M_PI/6)/Vin;\n"
+"\tTy = sqrt(3)/fs*vm*sin(localAlpha)/Vin;\n"
+"\tT0 = 1/fs - Tx - Ty;\n"
+"\tswitch(sector)\n"
+"\t{\n"
+"\t\tcase 0:\n"
+"\t\t\tOutput(0) = (T0 + Tx*2 + Ty*2)*fs - 1;\n"
+"\t\t\tOutput(1) = (T0 + Ty*2)*fs - 1;\n"
+"\t\t\tOutput(2) = (T0)*fs - 1;\n"
+"\t\t\tbreak;\n"
+"\t\t\t\n"
+"\t\tcase 1:\n"
+"\t\t\tOutput(0) = (T0 + Tx*2)*fs - 1;\n"
+"\t\t\tOutput(1) = (T0 + Tx*2 + Ty*2)*fs - 1;\n"
+"\t\t\tOutput(2) = (T0)*fs - 1;\n"
+"\t\t\tbreak;\n"
+"\t\t\t\n"
+"\t\tcase 2:\n"
+"\t\t\tOutput(0) = (T0)*fs - 1;\n"
+"\t\t\tOutput(1) = (T0 + Tx*2 + Ty*2)*fs - 1;\n"
+"\t\t\tOutput(2) = (T0 + Ty*2)*fs - 1;\n"
+"\t\t\tbreak;\n"
+"\t\t\t\n"
+"\t\tcase 3:\n"
+"\t\t\tOutput(0) = (T0)*fs - 1;\n"
+"\t\t\tOutput(1) = (T0 + Tx*2)*fs - 1;\n"
+"\t\t\tOutput(2) = (T0 + Tx*2 + Ty*2)*fs - 1;\n"
+"\t\t\tbreak;\n"
+"\t\t\t\n"
+"\t\tcase 4:\n"
+"\t\t\tOutput(0) = (T0 + Ty*2)*fs - 1;\n"
+"\t\t\tOutput(1) = (T0)*fs - 1;\n"
+"\t\t\tOutput(2) = (T0 + Tx*2 + Ty*2)*fs - 1;\n"
+"\t\t\tbreak;\n"
+"\t\t\t\n"
+"\t\tcase 5:\n"
+"\t\t\tOutput(0) = (T0 + Tx*2 + Ty*2)*fs - 1;\n"
+"\t\t\tOutput(1) = (T0)*fs - 1;\n"
+"\t\t\tOutput(2) = (T0 + Tx*2)*fs - 1;\n"
+"\t\t\tbreak;\n"
+"\t}\n"
+"}"
+        Show          off
+      }
+      Parameter {
+        Variable      "UpdateFcn"
+        Value         ""
+        Show          off
+      }
+      Parameter {
+        Variable      "DerivativeFcn"
+        Value         ""
+        Show          off
+      }
+      Parameter {
+        Variable      "TerminateFcn"
+        Value         ""
+        Show          off
+      }
+      Parameter {
+        Variable      "StoreCustomStateFcn"
+        Value         ""
+        Show          off
+      }
+      Parameter {
+        Variable      "RestoreCustomStateFcn"
+        Value         ""
+        Show          off
+      }
+    }
+    Component {
+      Type          Constant
+      Name          "Constant"
+      Show          on
+      Position      [160, 225]
+      Direction     right
+      Flipped       off
+      LabelPosition south
+      Frame         [-10, -10; 10, 10]
+      Parameter {
+        Variable      "Value"
+        Value         "500"
+        Show          off
+      }
+      Parameter {
+        Variable      "DataType"
+        Value         "10"
+        Show          off
+      }
+    }
+    Component {
+      Type          SineGenerator
+      Name          "Sine Wave"
+      Show          on
+      Position      [165, 275]
+      Direction     right
+      Flipped       off
+      LabelPosition south
+      Parameter {
+        Variable      "Amplitude"
+        Value         "100"
+        Show          off
+      }
+      Parameter {
+        Variable      "Bias"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "Frequency"
+        Value         "fg"
+        Show          off
+      }
+      Parameter {
+        Variable      "Phase"
+        Value         "[90 0]"
+        Show          off
+      }
+      Parameter {
+        Variable      "Units"
+        Value         "3"
+        Show          off
+      }
+    }
+    Component {
+      Type          SignalMux
+      Name          "Mux"
+      Show          off
+      Position      [225, 230]
+      Direction     right
+      Flipped       off
+      LabelPosition south
+      Parameter {
+        Variable      "Width"
+        Value         "[1 2]"
+        Show          off
+      }
+    }
+    Component {
+      Type          Scope
+      Name          "Scope"
+      Show          on
+      Position      [365, 230]
+      Direction     up
+      Flipped       off
+      LabelPosition south
+      Location      [0, 23; 1440, 833]
+      State         "AAAA/wAAAAD9AAAAAgAAAAEAAAAAAAAAAPwCAAAAA/sAAAAQAFoAbwBvA"
+"G0AQQByAGUAYQAAAAAA/////wAAADUA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
+"///wAAAGcA////+wAAAAwAVAByAGEAYwBlAHMAAAAAAP////8AAABnAP///wAAAAMAAAWgAAAAkPw"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQBAAAAAAAABaAAAABPAP///wAABaAAAAJ7AAAA"
+"BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
+"AAAAA=="
+      SavedViews    "AAAAAgAAAAA="
+      HeaderState   "{\"DefaultSecSize\":0,\"FirstSecSize\":115,\"Labels\":[],"
+"\"VisualIdxs\":[]}"
+      PlotPalettes  "AAAAAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      Axes          "1"
+      TimeRange     "0.0"
+      ScrollingMode "1"
+      SingleTimeAxis "1"
+      Open          "1"
+      Ts            "-1"
+      SampleLimit   "0"
+      XAxisLabel    ""
+      ShowLegend    "1"
+      Axis {
+        Name          ""
+        AutoScale     1
+        MinValue      0
+        MaxValue      1
+        Signals       {}
+        SignalTypes   [ ]
+        Untangle      0
+        KeepBaseline  off
+        BaselineValue 0
+      }
+      Fourier {
+        SingleXAxis       on
+        AxisLabel         "Frequency"
+        Scaling           0
+        PhaseDisplay      2
+        ShowFourierLegend off
+        Axis {
+          Name          ""
+          AutoScale     1
+          MinValue      0
+          MaxValue      1
+          Signals       {}
+          Untangle      0
+          KeepBaseline  off
+          BaselineValue 0
+        }
+      }
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Mux"
+      SrcTerminal   1
+      DstComponent  "C-Script"
+      DstTerminal   1
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Constant"
+      SrcTerminal   1
+      DstComponent  "Mux"
+      DstTerminal   2
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Sine Wave"
+      SrcTerminal   1
+      Points        [195, 275; 195, 235]
+      DstComponent  "Mux"
+      DstTerminal   3
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "C-Script"
+      SrcTerminal   2
+      DstComponent  "Scope"
+      DstTerminal   1
+    }
+  }
+}
+DemoSignature "YZVt6AmqAs7M8rdobWhgWB9HjqgmPStbKE+GskN8900="

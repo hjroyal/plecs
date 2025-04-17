@@ -1,0 +1,77 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 14.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      2020,         69]
+NotebookOptionsPosition[      1519,         51]
+NotebookOutlinePosition[      1943,         68]
+CellTagsIndexPosition[      1900,         65]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"(", GridBox[{
+      {
+       RowBox[{"vm", " ", 
+        RowBox[{"Cos", "[", "\[Theta]", "]"}]}]},
+      {
+       RowBox[{"vm", " ", 
+        RowBox[{"Cos", "[", 
+         RowBox[{"\[Theta]", " ", "-", " ", 
+          FractionBox[
+           RowBox[{"2", "\[Pi]"}], "3"]}], "]"}]}]},
+      {
+       RowBox[{"vm", " ", 
+        RowBox[{"Cos", "[", 
+         RowBox[{"\[Theta]", " ", "-", " ", 
+          FractionBox[
+           RowBox[{"4", "\[Pi]"}], "3"]}], "]"}]}]}
+     }], ")"}], "//", "Total"}], " ", "//", "Simplify"}]], "Input",
+ CellChangeTimes->{{3.953709401729353*^9, 3.953709581975609*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"6c0b0b4e-a2bf-f241-8990-e775c3892869"],
+
+Cell[BoxData[
+ RowBox[{"{", "0", "}"}]], "Output",
+ CellChangeTimes->{{3.953709572453169*^9, 3.953709582931387*^9}},
+ CellLabel->"Out[2]=",ExpressionUUID->"c243d50d-b00c-4340-9049-ecb69ec8a01d"]
+}, Open  ]]
+},
+WindowSize->{1080, 607.5},
+WindowMargins->{{-4.875, Automatic}, {Automatic, -4.875}},
+FrontEndVersion->"14.0 for Microsoft Windows (64-bit) (2023\:5e7412\:670812\
+\:65e5)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"ec19e38b-f404-c341-8723-21e1598ea0e6"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 726, 21, 95, "Input",ExpressionUUID->"6c0b0b4e-a2bf-f241-8990-e775c3892869"],
+Cell[1309, 45, 194, 3, 32, "Output",ExpressionUUID->"c243d50d-b00c-4340-9049-ecb69ec8a01d"]
+}, Open  ]]
+}
+]
+*)
+
