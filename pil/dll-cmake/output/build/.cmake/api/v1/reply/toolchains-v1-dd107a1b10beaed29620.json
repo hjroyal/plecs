@@ -1,0 +1,138 @@
+{
+	"kind" : "toolchains",
+	"toolchains" : 
+	[
+		{
+			"compiler" : 
+			{
+				"id" : "GNU",
+				"implicit" : 
+				{
+					"includeDirectories" : 
+					[
+						"C:/qp/qtools/mingw32/lib/gcc/i686-w64-mingw32/9.2.0/include",
+						"C:/qp/qtools/mingw32/include",
+						"C:/qp/qtools/mingw32/lib/gcc/i686-w64-mingw32/9.2.0/include-fixed",
+						"C:/qp/qtools/mingw32/i686-w64-mingw32/include"
+					],
+					"linkDirectories" : 
+					[
+						"C:/qp/qtools/mingw32/lib/gcc/i686-w64-mingw32/9.2.0",
+						"C:/qp/qtools/mingw32/lib/gcc",
+						"C:/qp/qtools/mingw32/i686-w64-mingw32/lib",
+						"C:/qp/qtools/mingw32/lib"
+					],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : 
+					[
+						"mingw32",
+						"gcc",
+						"moldname",
+						"mingwex",
+						"pthread",
+						"advapi32",
+						"shell32",
+						"user32",
+						"kernel32",
+						"mingw32",
+						"gcc",
+						"moldname",
+						"mingwex"
+					]
+				},
+				"path" : "C:/qp/qtools/mingw32/bin/gcc.exe",
+				"version" : "9.2.0"
+			},
+			"language" : "C",
+			"sourceFileExtensions" : 
+			[
+				"c",
+				"m"
+			]
+		},
+		{
+			"compiler" : 
+			{
+				"id" : "GNU",
+				"implicit" : 
+				{
+					"includeDirectories" : 
+					[
+						"C:/qp/qtools/mingw32/include/c++/9.2.0",
+						"C:/qp/qtools/mingw32/include/c++/9.2.0/i686-w64-mingw32",
+						"C:/qp/qtools/mingw32/include/c++/9.2.0/backward",
+						"C:/qp/qtools/mingw32/lib/gcc/i686-w64-mingw32/9.2.0/include",
+						"C:/qp/qtools/mingw32/include",
+						"C:/qp/qtools/mingw32/lib/gcc/i686-w64-mingw32/9.2.0/include-fixed",
+						"C:/qp/qtools/mingw32/i686-w64-mingw32/include"
+					],
+					"linkDirectories" : 
+					[
+						"C:/qp/qtools/mingw32/lib/gcc/i686-w64-mingw32/9.2.0",
+						"C:/qp/qtools/mingw32/lib/gcc",
+						"C:/qp/qtools/mingw32/i686-w64-mingw32/lib",
+						"C:/qp/qtools/mingw32/lib"
+					],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : 
+					[
+						"stdc++",
+						"mingw32",
+						"gcc_s",
+						"gcc",
+						"moldname",
+						"mingwex",
+						"pthread",
+						"advapi32",
+						"shell32",
+						"user32",
+						"kernel32",
+						"mingw32",
+						"gcc_s",
+						"gcc",
+						"moldname",
+						"mingwex"
+					]
+				},
+				"path" : "C:/qp/qtools/mingw32/bin/g++.exe",
+				"version" : "9.2.0"
+			},
+			"language" : "CXX",
+			"sourceFileExtensions" : 
+			[
+				"C",
+				"M",
+				"c++",
+				"cc",
+				"cpp",
+				"cxx",
+				"mm",
+				"mpp",
+				"CPP",
+				"ixx",
+				"cppm",
+				"ccm",
+				"cxxm",
+				"c++m"
+			]
+		},
+		{
+			"compiler" : 
+			{
+				"implicit" : {},
+				"path" : "C:/qp/qtools/mingw32/bin/windres.exe"
+			},
+			"language" : "RC",
+			"sourceFileExtensions" : 
+			[
+				"rc",
+				"RC"
+			]
+		}
+	],
+	"version" : 
+	{
+		"major" : 1,
+		"minor" : 0
+	}
+}

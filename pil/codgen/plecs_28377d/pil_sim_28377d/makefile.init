@@ -1,0 +1,16 @@
+-include ../cg/cg.mk
+
+ifeq ($(SHELL), cmd.exe)
+FlipSlashesBack=$(subst /,\,$(1))
+CopyFile=copy /Y "$(call FlipSlashesBack,$(1))" "$(call FlipSlashesBack,$(2))"
+else
+space:=
+space+=
+EscapeSpaces=$(subst $(space),\$(space),$(1))
+CopyFile=cp $(call EscapeSpaces,$(1)) $(call EscapeSpaces,$(2))
+endif 
+
+allcg: all
+	@echo Copy binary to codegen folder:
+	$(call CopyFile,$(ARTIFACT_NAME).out,$(BUILD_ROOT)/$(BASE_NAME).elf)
+	$(call CopyFile,$(ARTIFACT_NAME).out,$(BUILD_ROOT)/$(BASE_NAME)_CPU0.elf)

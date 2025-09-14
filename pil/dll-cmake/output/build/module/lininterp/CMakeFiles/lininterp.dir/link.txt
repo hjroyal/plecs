@@ -1,0 +1,2 @@
+C:\qp\qtools\mingw32\bin\ar.exe qc D:\code\28377d\pebsa\4_Sim\dll\output\lib\liblininterp.a CMakeFiles/lininterp.dir/lininterp.c.obj
+C:\qp\qtools\mingw32\bin\ranlib.exe D:\code\28377d\pebsa\4_Sim\dll\output\lib\liblininterp.a

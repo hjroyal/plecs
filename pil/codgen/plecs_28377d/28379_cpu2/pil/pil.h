@@ -1,0 +1,445 @@
+/*
+  Copyright (c) 2015-2018 by Plexim GmbH
+  All rights reserved.
+
+  A free license is granted to anyone to use this software for any legal
+  non safety-critical purpose, including commercial applications, provided
+  that:
+  1) IT IS NOT USED TO DIRECTLY OR INDIRECTLY COMPETE WITH PLEXIM, and
+  2) THIS COPYRIGHT NOTICE IS PRESERVED in its entirety.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+  OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+*/
+
+/**
+ * @file pil.h
+ * @brief Public interface to PIL framework.
+ *
+ * Important:
+ * - The PIL API uses variadic macros and the GCC __attribute__ extension.
+ */
+
+#ifndef PIL_H_
+#define PIL_H_
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include <stdint.h>
+#include <stdbool.h>
+
+#ifndef PIL_CLA_CODE
+#include <stdlib.h>
+#endif
+
+#ifdef __TI_COMPILER_VERSION__
+#define EMIT_PRAGMA(x) _Pragma(#x)
+#define EMIT_RETAIN_PRAGMA(x) EMIT_PRAGMA(RETAIN(x))
+#if defined(__TI_EABI__)
+#define GCC_PIL_ATTRIBUTE __attribute__ ((section(".const:pilv"), used))
+#else
+#define GCC_PIL_ATTRIBUTE __attribute__ ((section(".econst:pilv"), used))
+#endif
+#else
+#define EMIT_RETAIN_PRAGMA(x)
+#define GCC_PIL_ATTRIBUTE __attribute__ ((section(".rodata.pilv"), used))
+#endif
+
+//@{
+/** Additional types and constant definitions */
+#ifndef NULL
+#define NULL 0
+#endif
+//@}
+
+/**
+ * Macro for declaring a read probe.
+ */
+#ifndef PIL_PREP_TOOL
+#define PIL_READ_PROBE(type, name, qloc, ref, unit) type name
+#endif
+
+/**
+ * Macro for declaring an override probe.
+ */
+#ifndef PIL_PREP_TOOL
+// full list of arguments used by PIL prep tool: type, name, qloc, ref, unit
+#ifdef PREFIX_PROBES
+#define PIL_OVERRIDE_PROBE(type, name, ...)\
+      type name
+#else
+#define PIL_OVERRIDE_PROBE(type, name, ...)\
+      type name;\
+      type name ## _probeV;\
+      int16_t name ## _probeF
+#endif
+#endif
+
+/**
+ * Macro for declaring a calibration.
+ */
+#ifndef PIL_PREP_TOOL
+#define PIL_CALIBRATION(type, name, qloc, ref, unit, min, max, dval) type name
+#endif
+
+/**
+ * Macro for defining a PIL configuration constant.
+ */
+#define PIL_CONFIG_DEF(type, name, value)\
+  EMIT_RETAIN_PRAGMA(PIL_C_ ## name)\
+  const type PIL_C_ ## name GCC_PIL_ATTRIBUTE = value
+
+/**
+ * Macro for setting the value of an override probe.
+ * Important: Do not set override probes using direct assignments ("=").
+ * Always use this macro instead.
+ */
+#ifdef PREFIX_PROBES
+#define SET_OPROBE(probe, value) \
+    do{\
+       probe = value; \
+       if(PIL_Probe_F_ ## probe == 1){\
+          probe = PIL_Probe_V_ ## probe; \
+       }\
+    } while (0)
+#else
+#define SET_OPROBE(probe, value) \
+   do{\
+      probe = value; \
+      if(probe ## _probeF == 1){\
+         probe = probe ## _probeV; \
+      }\
+   } while (0)
+#endif
+/**
+ * Control-callback identifiers.
+ * These constants identify individual actions which the PIL framework
+ * requests from the application.
+ */
+typedef enum
+{
+   PIL_CLBK_LEAVE_NORMAL_OPERATION_REQ, //!< Request system to enter PIL mode (i.e. disable actuators)
+   PIL_CLBK_ENTER_NORMAL_OPERATION_REQ, //!< Release system from PIL mode (i.e. allow re-enabling of actuators)
+   PIL_CLBK_PREINIT_SIMULATION,         //!< Called (with interrupts disabled) to allow PIL pre-initialization
+   PIL_CLBK_INITIALIZE_SIMULATION,      //!< Called at start of PIL simulation
+   PIL_CLBK_TERMINATE_SIMULATION,       //!< Called at end of PIL simulation
+   PIL_CLBK_STOP_TIMERS,                //!< Called to request freezing of timers
+   PIL_CLBK_START_TIMERS                //!< Called to request release of frozen timers
+} PIL_CtrlCallbackReq_t;
+
+/**
+ * Control callback type definition.
+ * The PIL framework calls the application using this callback pointer.
+ */
+typedef void(*PIL_CtrlCallbackPtr_t)(void *, PIL_CtrlCallbackReq_t);
+
+/**
+ * Communication callback type definition.
+ * The PIL framework calls the application using this callback pointer
+ * to receive incoming data and to request the transmission of outgoing messages.
+ */
+typedef void(*PIL_CommCallbackPtr_t)(void *);
+
+typedef void(*PIL_CommInPtr_t)(void *, int16_t);
+typedef int16_t(*PIL_CommOutPtr_t)(void *, int16_t*);
+
+/**
+ * PIL object data structures
+ */
+struct PIL_PUB_OBJ {
+   PIL_CommCallbackPtr_t commCallback;
+   void *commHandle;
+   PIL_CommOutPtr_t commOut;
+   PIL_CommInPtr_t commIn;
+   bool pilActive;
+   volatile bool backgroundSyncActive;
+};
+
+typedef struct PIL_OBJ
+{
+   struct PIL_PUB_OBJ pub;
+   int32_t priv[460];
+} PIL_Obj_t;
+
+typedef PIL_Obj_t *PIL_Handle_t;
+
+typedef struct PIL_DC_LINK_MEM {
+    uint32_t mem[550];
+} PIL_DcLinkObj_t;
+
+/**
+ * Initializes override probes.
+ * This function is autogenerated by the PIL prep tool and has to be called once
+ * during the initialization of the code.
+ */
+extern void PilInitOverrideProbes(void);
+
+/**
+ * Initializes calibrations to their default values.
+ * This function is auto-generated by the PIL prep tool and has to be called during
+ * the initialization of the code. It is also recommended that the function be called
+ * in the PIL_CLBK_TERMINATE_SIMULATION callback to ensure calibrations are restored
+ * to their original values after a PIL simulations.
+ */
+extern void PilInitCalibrations(void);
+
+/**
+ * Initializes the PIL framework.
+ * This function must be called before any other framework functions.
+ */
+extern PIL_Handle_t PIL_init(void *aMemory, const size_t aNumBytes);
+
+/**
+ * Sets the firmware identifier (GUID)
+ *
+ * @param  aGuid     Pointer to first element of GUID field
+ * @return None
+ */
+extern void PIL_setGuid(PIL_Handle_t aPilHandle, const unsigned char* aGuid);
+
+/**
+ * Sets the identifier (checksum) of generated code
+ */
+extern void PIL_setChecksum(PIL_Handle_t aPilHandle, const char* aChecksum);
+
+/**
+ * Configures memory-based parallel communication
+ *
+ * @param aProtocol
+ * @param aBufferAddress
+ * @param aBufferSize
+ * @return None
+ */
+extern void PIL_configureParallelCom(PIL_Handle_t aPilHandle, uint16_t aProtocol, uint32_t aBufferAddress, uint16_t aBufferSize);
+
+/**
+ * Sets the serial communication callback
+ *
+ * @param aCommPtr   Pointer to CommCallback
+ * @return None
+ */
+extern void PIL_setSerialComCallback(PIL_Handle_t aPilHandle, PIL_CommCallbackPtr_t aCommPtr);
+
+
+extern void PIL_configureDualCoreLink(PIL_Handle_t aPilHandle,bool aIsPrimaryCore, uint16_t* aPrimaryCoreMem, uint16_t* aSecondaryCoreMem, uint16_t aMemSize);
+
+/**
+ * Sets desired node address
+ *
+ * @param aNode Desired Station/Node Address
+ * @return None
+ */
+extern void PIL_setNodeAddress(PIL_Handle_t aPilHandle, unsigned char aNode);
+
+/**
+ * Sets pointer to the PIL control callback.
+ *
+ * @param  aCtrlPtr   Pointer to CtrlCallback
+ * @return None
+ */
+extern void PIL_setCtrlCallback(PIL_Handle_t aPilHandle, PIL_CtrlCallbackPtr_t aCtrlPtr);
+
+/**
+ * Sets pointer to the PIL background communication callback.
+ *
+ * @param  aBackgroundCommPtr   Pointer to BackgroundCommCallback
+ * @return None
+ */
+extern void PIL_setBackgroundCommCallback(PIL_Handle_t aPilHandle, PIL_CommCallbackPtr_t aBackgroundCommPtr);
+
+/**
+ * Indicates to the framework that the system is ready for a PIL simulation
+ * Invokes a Framework State change to the Ready Mode
+ * This method is used as a response to an LEAVE_NORMAL_OPERATION_REQ and has no effect in PIL Mode
+ *
+ * @return None
+ */
+extern void PIL_allowPilSimulation(PIL_Handle_t aPilHandle);
+
+/**
+ * Indicates to the framework that the system is not ready for a PIL simulation
+ * Invokes a Framework State change to Normal Operation
+ * This method is used as a response to an ENTER_NORMAL_OPERATION_REQ and has no effect in PIL Mode
+ *
+ * @return None
+ */
+extern void PIL_inhibitPilSimulation(PIL_Handle_t aPilHandle);
+
+/**
+ * Used to Request the PIL_CLBK_ENTER_NORMAL_OPERATION_REQ Callback from the Application
+ * Only has an effect outside PIL Mode
+ *
+ * @return None
+ */
+void PIL_requestNormalMode(PIL_Handle_t aPilHandle);
+
+/**
+ * Used to Request the PIL_CLBK_LEAVE_NORMAL_OPERATION_REQ Callback from the Application
+ * Only has an effect outside PIL Mode
+ *
+ * @return None
+ */
+void PIL_requestReadyMode(PIL_Handle_t aPilHandle);
+
+/**
+ * Used to check if a PIL simulation is active
+ *
+ * @return None
+ */
+extern bool PIL_simulationActive(PIL_Handle_t aPilHandle);
+
+/**
+ * Receive function.
+ * This function is used by the communication callback to
+ * pass received characters (e.g. from the SCI link) to the PIL
+ * message parser.
+ *
+ * @param aChar character received over communication link
+ */
+extern void PIL_RA_serialIn(PIL_Handle_t aPilHandle, int16_t aChar);
+
+/**
+ * Transmit function.
+ * This function is used by the communication callback to
+ * obtain characters from the PIL framework that are ready for
+ * transmission (e.g. over the SCI link).
+ *
+ * @param aChar pointer to hold potential character to be transmitted
+ * @return > 0 if a character is ready for transmission and written to aChar
+ */
+extern uint16_t PIL_RA_serialOut(PIL_Handle_t aPilHandle, int16_t* aChar);
+
+
+/**
+ * Test functions.
+ */
+extern void PIL_RA_serialRspOut(PIL_Handle_t aPilHandle, int16_t aChar);
+extern uint16_t PIL_RA_serialReqIn(PIL_Handle_t aPilHandle, int16_t* aChar);
+
+/**
+ * PIL service function to be called at the beginning of the control
+ * interrupt routine.
+ */
+extern void PIL_beginInterruptCall(PIL_Handle_t aPilHandle);
+
+/**
+ * PIL service function to be called in the background task.
+ */
+extern void PIL_backgroundCall(PIL_Handle_t aPilHandle);
+
+/**
+ * Macros for fast (direct) calls.
+ */
+#define PIL_SERIAL_IN(P, C) P->pub.commIn(P->pub.commHandle, C)
+
+#define PIL_SERIAL_OUT(P, C) P->pub.commOut(P->pub.commHandle, C)
+
+#define PIL_SIMULATION_ACTIVE(P) P->pub.pilActive
+
+#define PIL_BEGIN_INT_CALL(P) do {\
+         if(PIL_SIMULATION_ACTIVE(P)){\
+            PIL_beginInterruptCall(P);\
+         } else {\
+            P->pub.commCallback(P);\
+         }\
+      } while (0)
+
+/**
+ * Framework revision.
+ */
+#define PIL_FRAMEWORK_VERSION 0x0500 // v5.0
+
+/**
+ * Maximal length for PIL message
+ */
+#define PIL_MSG_DATA_LEN 30 // 30 words = maximal data length of RA Link data frame
+
+/**
+ * Globally unique identifier (GUID) autogenerated by PIL prep tool.
+ */
+extern const unsigned char PIL_D_Guid[];
+
+/**
+ * Pointer to PIL GUID.
+ */
+#define PIL_GUID_PTR (unsigned char*)&PIL_D_Guid[0]
+
+/**
+ * MACRO for PIL_D_x definitions.
+ */
+#define PIL_CONST_DEF(type, name, value)\
+  const type PIL_D_ ## name GCC_PIL_ATTRIBUTE = value
+
+/**
+ * Helper-structure for configuring all PIL symbols.
+ */
+typedef struct
+{
+   int q;       //!< fixed-point location
+   float ref;   //!< reference value
+   char *unit;  //!< unit string
+} pil_var;
+
+/**
+ * Helper-structure for configuring calibrations (write-access).
+ */
+typedef struct
+{
+   float min;   //!< minimal value (inclusive)
+   float max;   //!< maximal value (inclusive)
+   float dval;  //!< default value
+   int level;   //!< access level (-1 = no direct writes allowed)
+} pil_var_wa;
+
+/**
+ * Macro for encapsulating read and override probe parameters.
+ */
+#define PIL_SYMBOL_DEF(name, qloc, ref, unit)\
+    EMIT_RETAIN_PRAGMA(PIL_V_ ## name)\
+    const pil_var PIL_V_ ## name GCC_PIL_ATTRIBUTE = {qloc, ref, unit}
+
+/**
+ * Macro for encapsulating calibration parameters.
+ */
+#define PIL_SYMBOL_CAL_DEF(name, qloc, ref, unit, min, max, dval)\
+      EMIT_RETAIN_PRAGMA(PIL_V_ ## name)\
+      EMIT_RETAIN_PRAGMA(PIL_WA_ ## name)\
+      const pil_var PIL_V_ ## name GCC_PIL_ATTRIBUTE  = {qloc, ref, unit};\
+      const pil_var_wa PIL_WA_ ## name GCC_PIL_ATTRIBUTE = {min, max, dval, 1}
+
+/**
+ * Macro for initializing an override probe.
+ */
+#ifndef PIL_PREP_TOOL
+#ifdef PREFIX_PROBES
+#define INIT_OPROBE(probe) \
+   do{\
+       PIL_Probe_F_ ## probe = 0;\
+   } while (0)
+#else
+#define INIT_OPROBE(probe) \
+   do{\
+      probe ## _probeF = 0;\
+   } while (0)
+#endif
+#endif
+
+/**
+ * Macro for initializing a calibration.
+ */
+#ifndef PIL_PREP_TOOL
+#define PIL_INIT_CALIBRATION(N, T, P, Q, R) \
+    N = (T)(P * (double)(1L << Q) / (double)(R))
+#endif
+
+#ifdef __cplusplus
+}
+#endif
+#endif /* PIL_H_ */

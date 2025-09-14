@@ -1,0 +1,8 @@
+[
+{
+  "directory": "C:/Users/hjroyal/Desktop/pebsa/4_PlecsModel/plecsStudy/notes/PLECS43_dll/p45/build",
+  "command": "C:\\app\\c_cpp\\llvm\\bin\\clang.exe -Dlininterp_EXPORTS -IC:/Users/hjroyal/Desktop/pebsa/4_PlecsModel/plecsStudy/notes/PLECS43_dll/p45/include -IC:/env/PLECS49/Standalone/include/plecs -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -std=gnu99 -o CMakeFiles\\lininterp.dir\\lininterp.c.obj -c C:\\Users\\hjroyal\\Desktop\\pebsa\\4_PlecsModel\\plecsStudy\\notes\\PLECS43_dll\\p45\\lininterp.c",
+  "file": "C:\\Users\\hjroyal\\Desktop\\pebsa\\4_PlecsModel\\plecsStudy\\notes\\PLECS43_dll\\p45\\lininterp.c",
+  "output": "CMakeFiles\\lininterp.dir\\lininterp.c.obj"
+}
+]

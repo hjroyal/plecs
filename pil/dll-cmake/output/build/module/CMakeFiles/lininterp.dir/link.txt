@@ -1,0 +1,3 @@
+C:\qp\qtools\bin\cmake.exe -E rm -f CMakeFiles\lininterp.dir/objects.a
+C:\qp\qtools\mingw32\bin\ar.exe qc CMakeFiles\lininterp.dir/objects.a @CMakeFiles\lininterp.dir\objects1.rsp
+C:\qp\qtools\mingw32\bin\gcc.exe -g -shared -o D:\code\28377d\pebsa\4_Sim\dll\output\bin\liblininterp.dll -Wl,--out-implib,D:\code\28377d\pebsa\4_Sim\dll\output\lib\liblininterp.dll.a -Wl,--major-image-version,0,--minor-image-version,0 -Wl,--whole-archive CMakeFiles\lininterp.dir/objects.a -Wl,--no-whole-archive @CMakeFiles\lininterp.dir\linkLibs.rsp

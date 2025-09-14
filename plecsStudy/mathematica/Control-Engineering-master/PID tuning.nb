@@ -1,0 +1,898 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     35725,        890]
+NotebookOptionsPosition[     34728,        868]
+NotebookOutlinePosition[     35071,        883]
+CellTagsIndexPosition[     35028,        880]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{"Gp", " ", "=", " ", 
+  RowBox[{"1", "/", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"s", "^", "2"}], "+", " ", 
+     RowBox[{"2", "s"}], " ", "+", " ", "2"}], 
+    ")"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"Gc", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"Kd", "*", 
+      RowBox[{"s", "^", "2"}]}], " ", "+", " ", 
+     RowBox[{"Kp", "*", "s"}], " ", "+", " ", "Ki"}], ")"}], "/", 
+   "s"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Together", "[", 
+  RowBox[{"Expand", "[", 
+   RowBox[{"Gp", "*", 
+    RowBox[{"Gc", "/", 
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       RowBox[{"Gc", "*", "Gp"}]}], ")"}]}]}], "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Gcl", "=", 
+  RowBox[{"TransferFunctionModel", "[", 
+   RowBox[{"%", ",", "s"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"OutputResponse", "[", 
+  RowBox[{"Gcl", ",", "1", ",", "t"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{"%", ",", 
+     RowBox[{"{", 
+      RowBox[{"t", ",", "0", ",", "20"}], "}"}], ",", 
+     RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"Kp", ",", "0.1", ",", "10"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"Ki", ",", "0.1", ",", "10"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"Kd", ",", "0.1", ",", "5"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.7966512723366117`*^9, 3.796651410305008*^9}},
+ CellLabel->"In[31]:=",ExpressionUUID->"77a33d84-024e-4624-bf91-180054563040"],
+
+Cell[BoxData[
+ FractionBox["1", 
+  RowBox[{"2", "+", 
+   RowBox[{"2", " ", "s"}], "+", 
+   SuperscriptBox["s", "2"]}]]], "Output",
+ CellChangeTimes->{
+  3.7966514117530274`*^9, {3.796651445400545*^9, 3.7966515084512725`*^9}},
+ CellLabel->"Out[31]=",ExpressionUUID->"b4ad0ce9-ff20-4a6c-9c8f-75e886a3328e"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"Ki", "+", 
+   RowBox[{"Kp", " ", "s"}], "+", 
+   RowBox[{"Kd", " ", 
+    SuperscriptBox["s", "2"]}]}], "s"]], "Output",
+ CellChangeTimes->{
+  3.7966514117530274`*^9, {3.796651445400545*^9, 3.7966515084552717`*^9}},
+ CellLabel->"Out[32]=",ExpressionUUID->"36a09535-2f23-41e9-80af-99b406aa7ab4"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"Ki", "+", 
+   RowBox[{"Kp", " ", "s"}], "+", 
+   RowBox[{"Kd", " ", 
+    SuperscriptBox["s", "2"]}]}], 
+  RowBox[{"Ki", "+", 
+   RowBox[{"2", " ", "s"}], "+", 
+   RowBox[{"Kp", " ", "s"}], "+", 
+   RowBox[{"2", " ", 
+    SuperscriptBox["s", "2"]}], "+", 
+   RowBox[{"Kd", " ", 
+    SuperscriptBox["s", "2"]}], "+", 
+   SuperscriptBox["s", "3"]}]]], "Output",
+ CellChangeTimes->{
+  3.7966514117530274`*^9, {3.796651445400545*^9, 3.79665150845927*^9}},
+ CellLabel->"Out[33]=",ExpressionUUID->"66f8ba1b-3e7b-43d4-ac01-43d0f7de3449"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TemplateBox[{FractionBox[
+     RowBox[{"Ki", "+", 
+       RowBox[{"Kp", " ", "s"}], "+", 
+       RowBox[{"Kd", " ", 
+         SuperscriptBox["s", "2"]}]}], 
+     RowBox[{"Ki", "+", 
+       RowBox[{"2", " ", "s"}], "+", 
+       RowBox[{"Kp", " ", "s"}], "+", 
+       RowBox[{"2", " ", 
+         SuperscriptBox["s", "2"]}], "+", 
+       RowBox[{"Kd", " ", 
+         SuperscriptBox["s", "2"]}], "+", 
+       SuperscriptBox["s", "3"]}]],InterpretationBox[
+    "\[InvisibleSpace]", None],{
+    TransferFunctionModel, {
+     False, False, {False, False}}, $Failed, {{Control`CommonDump`$DUMMY$}, {
+      Control`CommonDump`$DUMMY$}}, InterpretationBox[#, 
+      TransferFunctionModel[{{{$CellContext`Ki + $CellContext`Kp \
+$CellContext`s + $CellContext`Kd $CellContext`s^2}}, $CellContext`Ki + 
+        2 $CellContext`s + $CellContext`Kp $CellContext`s + 
+        2 $CellContext`s^2 + $CellContext`Kd $CellContext`s^2 + \
+$CellContext`s^3}, $CellContext`s], AutoDelete -> True, Editable -> True, 
+      BaseStyle -> "TransferFunctionModelMinimal"]& , $CellContext`s, 1, 1, 
+     Control`CountStates[
+      TransferFunctionModel[{{{$CellContext`Ki + $CellContext`Kp \
+$CellContext`s + $CellContext`Kd $CellContext`s^2}}, $CellContext`Ki + 
+        2 $CellContext`s + $CellContext`Kp $CellContext`s + 
+        2 $CellContext`s^2 + $CellContext`Kd $CellContext`s^2 + \
+$CellContext`s^3}, $CellContext`s]], 1, {}, {False, False}, False, Automatic, 
+     None, Automatic},{}},
+   "TransferFunctionModelFull",
+   BaseStyle->{NumberMarks -> False},
+   DisplayFunction->(TagBox[
+     SubsuperscriptBox[
+      RowBox[{"(", 
+        GridBox[{{#}}, AllowedDimensions -> {1, 1}, AutoDelete -> False, 
+         AllowScriptLevelChange -> False, ColumnAlignments -> {Center}, 
+         BaseStyle -> {Deployed -> False}, GridBoxItemStyle -> {}, 
+         GridBoxDividers -> {
+          "Rows" -> {False, {False}, False}, 
+           "Columns" -> {False, {False}, False}}, 
+         GridBoxBackground -> {"Rows" -> {{
+              GrayLevel[1], 
+              RGBColor[0.8, 0.9, 0.9]}}}], ")"}], #2, 
+      ButtonBox[
+       GraphicsBox[{
+         RGBColor[0.8, 0.85, 0.85], 
+         EdgeForm[
+          RGBColor[0.6, 0.7, 0.7]], 
+         RectangleBox[{0, 0}, RoundingRadius -> Offset[2.5]], 
+         InsetBox[
+          StyleBox[
+          "\[ScriptCapitalT]", FontSize -> 12, FontColor -> GrayLevel[0]], {
+          0.5, 0.5}]}, ImageSize -> 20], ButtonFunction :> 
+       Control`Typesetting`SystemsModelTypesetToggle[
+         ButtonNotebook[], FE`CMObj], Evaluator -> Automatic, Appearance -> 
+       None], MultilineFunction -> None], 
+     EventHandlerTag[{"MouseEntered" :> {FE`CMObj = MathLink`CallFrontEnd[
+           FrontEnd`Value[
+            FEPrivate`Self[]]]}, PassEventsDown -> True, PassEventsUp -> 
+       True}]]& ),
+   InterpretationFunction->(
+    RowBox[{"TransferFunctionModel", "[", "Unevaluated", "[", 
+      RowBox[{"{", 
+        RowBox[{"{", 
+          TemplateSlotSequence[{1, 1}, ","], "}"}], "}"}], "]", ",", "s", ",",
+       "SamplingPeriod", "->", 
+      RowBox[{#2}], ",", "SystemsModelLabels", "->", "None", "]"}]& ),
+   Tooltip->TransferFunctionModel],
+  TransferFunctionModel[{{{$CellContext`Ki + $CellContext`Kp $CellContext`s + \
+$CellContext`Kd $CellContext`s^2}}, $CellContext`Ki + 
+    2 $CellContext`s + $CellContext`Kp $CellContext`s + 
+    2 $CellContext`s^2 + $CellContext`Kd $CellContext`s^2 + \
+$CellContext`s^3}, $CellContext`s],
+  AutoDelete->True,
+  BaseStyle->"TransferFunctionModelMinimal",
+  Editable->True]], "Output",
+ CellChangeTimes->{
+  3.7966514117530274`*^9, {3.796651445400545*^9, 3.796651508591237*^9}},
+ CellLabel->"Out[34]=",ExpressionUUID->"74122c85-8845-4d7f-8904-9010e2d7d9c7"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"-", "Ki"}], " ", 
+    RowBox[{"RootSum", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Ki", "+", 
+        RowBox[{"2", " ", "#1"}], "+", 
+        RowBox[{"Kp", " ", "#1"}], "+", 
+        RowBox[{"2", " ", 
+         SuperscriptBox["#1", "2"]}], "+", 
+        RowBox[{"Kd", " ", 
+         SuperscriptBox["#1", "2"]}], "+", 
+        SuperscriptBox["#1", "3"]}], "&"}], ",", 
+      RowBox[{
+       FractionBox[
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{"t", " ", "#1"}]], 
+        RowBox[{"2", "+", "Kp", "+", 
+         RowBox[{"4", " ", "#1"}], "+", 
+         RowBox[{"2", " ", "Kd", " ", "#1"}], "+", 
+         RowBox[{"3", " ", 
+          SuperscriptBox["#1", "2"]}]}]], "&"}]}], "]"}], " ", 
+    RowBox[{"RootSum", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Ki", "+", 
+        RowBox[{"2", " ", "#1"}], "+", 
+        RowBox[{"Kp", " ", "#1"}], "+", 
+        RowBox[{"2", " ", 
+         SuperscriptBox["#1", "2"]}], "+", 
+        RowBox[{"Kd", " ", 
+         SuperscriptBox["#1", "2"]}], "+", 
+        SuperscriptBox["#1", "3"]}], "&"}], ",", 
+      RowBox[{
+       FractionBox[
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{
+           RowBox[{"-", "t"}], " ", "#1"}]], " ", "#1"}], 
+        RowBox[{"2", "+", "Kp", "+", 
+         RowBox[{"4", " ", "#1"}], "+", 
+         RowBox[{"2", " ", "Kd", " ", "#1"}], "+", 
+         RowBox[{"3", " ", 
+          SuperscriptBox["#1", "2"]}]}]], "&"}]}], "]"}]}], "-", 
+   RowBox[{"Ki", " ", 
+    RowBox[{"RootSum", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Ki", "+", 
+        RowBox[{"2", " ", "#1"}], "+", 
+        RowBox[{"Kp", " ", "#1"}], "+", 
+        RowBox[{"2", " ", 
+         SuperscriptBox["#1", "2"]}], "+", 
+        RowBox[{"Kd", " ", 
+         SuperscriptBox["#1", "2"]}], "+", 
+        SuperscriptBox["#1", "3"]}], "&"}], ",", 
+      RowBox[{
+       FractionBox[
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{
+          RowBox[{"-", "t"}], " ", "#1"}]], 
+        RowBox[{"2", "+", "Kp", "+", 
+         RowBox[{"4", " ", "#1"}], "+", 
+         RowBox[{"2", " ", "Kd", " ", "#1"}], "+", 
+         RowBox[{"3", " ", 
+          SuperscriptBox["#1", "2"]}]}]], "&"}]}], "]"}], " ", 
+    RowBox[{"RootSum", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Ki", "+", 
+        RowBox[{"2", " ", "#1"}], "+", 
+        RowBox[{"Kp", " ", "#1"}], "+", 
+        RowBox[{"2", " ", 
+         SuperscriptBox["#1", "2"]}], "+", 
+        RowBox[{"Kd", " ", 
+         SuperscriptBox["#1", "2"]}], "+", 
+        SuperscriptBox["#1", "3"]}], "&"}], ",", 
+      RowBox[{
+       FractionBox[
+        RowBox[{
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"t", " ", "#1"}]]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"t", " ", "#1"}]], " ", "Kd"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"t", " ", "#1"}]], " ", "#1"}]}], 
+        RowBox[{"2", "+", "Kp", "+", 
+         RowBox[{"4", " ", "#1"}], "+", 
+         RowBox[{"2", " ", "Kd", " ", "#1"}], "+", 
+         RowBox[{"3", " ", 
+          SuperscriptBox["#1", "2"]}]}]], "&"}]}], "]"}]}], "-", 
+   RowBox[{"RootSum", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Ki", "+", 
+       RowBox[{"2", " ", "#1"}], "+", 
+       RowBox[{"Kp", " ", "#1"}], "+", 
+       RowBox[{"2", " ", 
+        SuperscriptBox["#1", "2"]}], "+", 
+       RowBox[{"Kd", " ", 
+        SuperscriptBox["#1", "2"]}], "+", 
+       SuperscriptBox["#1", "3"]}], "&"}], ",", 
+     RowBox[{
+      FractionBox[
+       RowBox[{
+        RowBox[{"2", " ", 
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{"t", " ", "#1"}]]}], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{"t", " ", "#1"}]], " ", "Kp"}], "+", 
+        RowBox[{"2", " ", 
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{"t", " ", "#1"}]], " ", "#1"}], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{"t", " ", "#1"}]], " ", "Kd", " ", "#1"}], "+", 
+        RowBox[{
+         SuperscriptBox["\[ExponentialE]", 
+          RowBox[{"t", " ", "#1"}]], " ", 
+         SuperscriptBox["#1", "2"]}]}], 
+       RowBox[{"2", "+", "Kp", "+", 
+        RowBox[{"4", " ", "#1"}], "+", 
+        RowBox[{"2", " ", "Kd", " ", "#1"}], "+", 
+        RowBox[{"3", " ", 
+         SuperscriptBox["#1", "2"]}]}]], "&"}]}], "]"}], "-", 
+   RowBox[{"Ki", " ", 
+    RowBox[{"RootSum", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Ki", "+", 
+        RowBox[{"2", " ", "#1"}], "+", 
+        RowBox[{"Kp", " ", "#1"}], "+", 
+        RowBox[{"2", " ", 
+         SuperscriptBox["#1", "2"]}], "+", 
+        RowBox[{"Kd", " ", 
+         SuperscriptBox["#1", "2"]}], "+", 
+        SuperscriptBox["#1", "3"]}], "&"}], ",", 
+      RowBox[{
+       FractionBox[
+        RowBox[{
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"t", " ", "#1"}]]}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"t", " ", "#1"}]], " ", "Kp"}], "+", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"t", " ", "#1"}]], " ", "#1"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"t", " ", "#1"}]], " ", "Kd", " ", "#1"}], "+", 
+         RowBox[{
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"t", " ", "#1"}]], " ", 
+          SuperscriptBox["#1", "2"]}]}], 
+        RowBox[{"2", "+", "Kp", "+", 
+         RowBox[{"4", " ", "#1"}], "+", 
+         RowBox[{"2", " ", "Kd", " ", "#1"}], "+", 
+         RowBox[{"3", " ", 
+          SuperscriptBox["#1", "2"]}]}]], "&"}]}], "]"}], " ", 
+    RowBox[{"RootSum", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Ki", "+", 
+        RowBox[{"2", " ", "#1"}], "+", 
+        RowBox[{"Kp", " ", "#1"}], "+", 
+        RowBox[{"2", " ", 
+         SuperscriptBox["#1", "2"]}], "+", 
+        RowBox[{"Kd", " ", 
+         SuperscriptBox["#1", "2"]}], "+", 
+        SuperscriptBox["#1", "3"]}], "&"}], ",", 
+      RowBox[{
+       FractionBox[
+        SuperscriptBox["\[ExponentialE]", 
+         RowBox[{
+          RowBox[{"-", "t"}], " ", "#1"}]], 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "3"}], " ", "Ki"}], "-", 
+         RowBox[{"4", " ", "#1"}], "-", 
+         RowBox[{"2", " ", "Kp", " ", "#1"}], "-", 
+         RowBox[{"2", " ", 
+          SuperscriptBox["#1", "2"]}], "-", 
+         RowBox[{"Kd", " ", 
+          SuperscriptBox["#1", "2"]}]}]], "&"}]}], "]"}]}], "+", 
+   RowBox[{"Kp", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"RootSum", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Ki", "+", 
+          RowBox[{"2", " ", "#1"}], "+", 
+          RowBox[{"Kp", " ", "#1"}], "+", 
+          RowBox[{"2", " ", 
+           SuperscriptBox["#1", "2"]}], "+", 
+          RowBox[{"Kd", " ", 
+           SuperscriptBox["#1", "2"]}], "+", 
+          SuperscriptBox["#1", "3"]}], "&"}], ",", 
+        RowBox[{
+         FractionBox[
+          SuperscriptBox["\[ExponentialE]", 
+           RowBox[{"t", " ", "#1"}]], 
+          RowBox[{"2", "+", "Kp", "+", 
+           RowBox[{"4", " ", "#1"}], "+", 
+           RowBox[{"2", " ", "Kd", " ", "#1"}], "+", 
+           RowBox[{"3", " ", 
+            SuperscriptBox["#1", "2"]}]}]], "&"}]}], "]"}], "-", 
+      RowBox[{
+       RowBox[{"RootSum", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Ki", "+", 
+           RowBox[{"2", " ", "#1"}], "+", 
+           RowBox[{"Kp", " ", "#1"}], "+", 
+           RowBox[{"2", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           RowBox[{"Kd", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           SuperscriptBox["#1", "3"]}], "&"}], ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{
+            SuperscriptBox["\[ExponentialE]", 
+             RowBox[{
+              RowBox[{"-", "t"}], " ", "#1"}]], " ", "#1"}], 
+           RowBox[{"2", "+", "Kp", "+", 
+            RowBox[{"4", " ", "#1"}], "+", 
+            RowBox[{"2", " ", "Kd", " ", "#1"}], "+", 
+            RowBox[{"3", " ", 
+             SuperscriptBox["#1", "2"]}]}]], "&"}]}], "]"}], " ", 
+       RowBox[{"RootSum", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Ki", "+", 
+           RowBox[{"2", " ", "#1"}], "+", 
+           RowBox[{"Kp", " ", "#1"}], "+", 
+           RowBox[{"2", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           RowBox[{"Kd", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           SuperscriptBox["#1", "3"]}], "&"}], ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{
+            SuperscriptBox["\[ExponentialE]", 
+             RowBox[{"t", " ", "#1"}]], " ", "#1"}], 
+           RowBox[{"2", "+", "Kp", "+", 
+            RowBox[{"4", " ", "#1"}], "+", 
+            RowBox[{"2", " ", "Kd", " ", "#1"}], "+", 
+            RowBox[{"3", " ", 
+             SuperscriptBox["#1", "2"]}]}]], "&"}]}], "]"}]}], "-", 
+      RowBox[{
+       RowBox[{"RootSum", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Ki", "+", 
+           RowBox[{"2", " ", "#1"}], "+", 
+           RowBox[{"Kp", " ", "#1"}], "+", 
+           RowBox[{"2", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           RowBox[{"Kd", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           SuperscriptBox["#1", "3"]}], "&"}], ",", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{
+             RowBox[{"-", "t"}], " ", "#1"}]], 
+           RowBox[{"2", "+", "Kp", "+", 
+            RowBox[{"4", " ", "#1"}], "+", 
+            RowBox[{"2", " ", "Kd", " ", "#1"}], "+", 
+            RowBox[{"3", " ", 
+             SuperscriptBox["#1", "2"]}]}]], "&"}]}], "]"}], " ", 
+       RowBox[{"RootSum", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Ki", "+", 
+           RowBox[{"2", " ", "#1"}], "+", 
+           RowBox[{"Kp", " ", "#1"}], "+", 
+           RowBox[{"2", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           RowBox[{"Kd", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           SuperscriptBox["#1", "3"]}], "&"}], ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{
+            RowBox[{"2", " ", 
+             SuperscriptBox["\[ExponentialE]", 
+              RowBox[{"t", " ", "#1"}]], " ", "#1"}], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", 
+              RowBox[{"t", " ", "#1"}]], " ", "Kd", " ", "#1"}], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", 
+              RowBox[{"t", " ", "#1"}]], " ", 
+             SuperscriptBox["#1", "2"]}]}], 
+           RowBox[{"2", "+", "Kp", "+", 
+            RowBox[{"4", " ", "#1"}], "+", 
+            RowBox[{"2", " ", "Kd", " ", "#1"}], "+", 
+            RowBox[{"3", " ", 
+             SuperscriptBox["#1", "2"]}]}]], "&"}]}], "]"}]}], "+", 
+      RowBox[{"Ki", " ", 
+       RowBox[{"RootSum", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Ki", "+", 
+           RowBox[{"2", " ", "#1"}], "+", 
+           RowBox[{"Kp", " ", "#1"}], "+", 
+           RowBox[{"2", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           RowBox[{"Kd", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           SuperscriptBox["#1", "3"]}], "&"}], ",", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{"t", " ", "#1"}]], 
+           RowBox[{"2", "+", "Kp", "+", 
+            RowBox[{"4", " ", "#1"}], "+", 
+            RowBox[{"2", " ", "Kd", " ", "#1"}], "+", 
+            RowBox[{"3", " ", 
+             SuperscriptBox["#1", "2"]}]}]], "&"}]}], "]"}], " ", 
+       RowBox[{"RootSum", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Ki", "+", 
+           RowBox[{"2", " ", "#1"}], "+", 
+           RowBox[{"Kp", " ", "#1"}], "+", 
+           RowBox[{"2", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           RowBox[{"Kd", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           SuperscriptBox["#1", "3"]}], "&"}], ",", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{
+             RowBox[{"-", "t"}], " ", "#1"}]], 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "3"}], " ", "Ki"}], "-", 
+            RowBox[{"4", " ", "#1"}], "-", 
+            RowBox[{"2", " ", "Kp", " ", "#1"}], "-", 
+            RowBox[{"2", " ", 
+             SuperscriptBox["#1", "2"]}], "-", 
+            RowBox[{"Kd", " ", 
+             SuperscriptBox["#1", "2"]}]}]], "&"}]}], "]"}]}]}], ")"}]}], "+", 
+   RowBox[{"Kd", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"RootSum", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Ki", "+", 
+          RowBox[{"2", " ", "#1"}], "+", 
+          RowBox[{"Kp", " ", "#1"}], "+", 
+          RowBox[{"2", " ", 
+           SuperscriptBox["#1", "2"]}], "+", 
+          RowBox[{"Kd", " ", 
+           SuperscriptBox["#1", "2"]}], "+", 
+          SuperscriptBox["#1", "3"]}], "&"}], ",", 
+        RowBox[{
+         FractionBox[
+          RowBox[{
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{"t", " ", "#1"}]], " ", "#1"}], 
+          RowBox[{"2", "+", "Kp", "+", 
+           RowBox[{"4", " ", "#1"}], "+", 
+           RowBox[{"2", " ", "Kd", " ", "#1"}], "+", 
+           RowBox[{"3", " ", 
+            SuperscriptBox["#1", "2"]}]}]], "&"}]}], "]"}], "-", 
+      RowBox[{
+       RowBox[{"RootSum", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Ki", "+", 
+           RowBox[{"2", " ", "#1"}], "+", 
+           RowBox[{"Kp", " ", "#1"}], "+", 
+           RowBox[{"2", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           RowBox[{"Kd", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           SuperscriptBox["#1", "3"]}], "&"}], ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{
+            SuperscriptBox["\[ExponentialE]", 
+             RowBox[{
+              RowBox[{"-", "t"}], " ", "#1"}]], " ", "#1"}], 
+           RowBox[{"2", "+", "Kp", "+", 
+            RowBox[{"4", " ", "#1"}], "+", 
+            RowBox[{"2", " ", "Kd", " ", "#1"}], "+", 
+            RowBox[{"3", " ", 
+             SuperscriptBox["#1", "2"]}]}]], "&"}]}], "]"}], " ", 
+       RowBox[{"RootSum", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Ki", "+", 
+           RowBox[{"2", " ", "#1"}], "+", 
+           RowBox[{"Kp", " ", "#1"}], "+", 
+           RowBox[{"2", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           RowBox[{"Kd", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           SuperscriptBox["#1", "3"]}], "&"}], ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{
+            SuperscriptBox["\[ExponentialE]", 
+             RowBox[{"t", " ", "#1"}]], " ", 
+            SuperscriptBox["#1", "2"]}], 
+           RowBox[{"2", "+", "Kp", "+", 
+            RowBox[{"4", " ", "#1"}], "+", 
+            RowBox[{"2", " ", "Kd", " ", "#1"}], "+", 
+            RowBox[{"3", " ", 
+             SuperscriptBox["#1", "2"]}]}]], "&"}]}], "]"}]}], "+", 
+      RowBox[{
+       RowBox[{"RootSum", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Ki", "+", 
+           RowBox[{"2", " ", "#1"}], "+", 
+           RowBox[{"Kp", " ", "#1"}], "+", 
+           RowBox[{"2", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           RowBox[{"Kd", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           SuperscriptBox["#1", "3"]}], "&"}], ",", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{
+             RowBox[{"-", "t"}], " ", "#1"}]], 
+           RowBox[{"2", "+", "Kp", "+", 
+            RowBox[{"4", " ", "#1"}], "+", 
+            RowBox[{"2", " ", "Kd", " ", "#1"}], "+", 
+            RowBox[{"3", " ", 
+             SuperscriptBox["#1", "2"]}]}]], "&"}]}], "]"}], " ", 
+       RowBox[{"RootSum", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Ki", "+", 
+           RowBox[{"2", " ", "#1"}], "+", 
+           RowBox[{"Kp", " ", "#1"}], "+", 
+           RowBox[{"2", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           RowBox[{"Kd", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           SuperscriptBox["#1", "3"]}], "&"}], ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", 
+              RowBox[{"t", " ", "#1"}]], " ", "Ki"}], "+", 
+            RowBox[{"2", " ", 
+             SuperscriptBox["\[ExponentialE]", 
+              RowBox[{"t", " ", "#1"}]], " ", "#1"}], "+", 
+            RowBox[{
+             SuperscriptBox["\[ExponentialE]", 
+              RowBox[{"t", " ", "#1"}]], " ", "Kp", " ", "#1"}]}], 
+           RowBox[{"2", "+", "Kp", "+", 
+            RowBox[{"4", " ", "#1"}], "+", 
+            RowBox[{"2", " ", "Kd", " ", "#1"}], "+", 
+            RowBox[{"3", " ", 
+             SuperscriptBox["#1", "2"]}]}]], "&"}]}], "]"}]}], "+", 
+      RowBox[{"Ki", " ", 
+       RowBox[{"RootSum", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Ki", "+", 
+           RowBox[{"2", " ", "#1"}], "+", 
+           RowBox[{"Kp", " ", "#1"}], "+", 
+           RowBox[{"2", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           RowBox[{"Kd", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           SuperscriptBox["#1", "3"]}], "&"}], ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{
+            SuperscriptBox["\[ExponentialE]", 
+             RowBox[{"t", " ", "#1"}]], " ", "#1"}], 
+           RowBox[{"2", "+", "Kp", "+", 
+            RowBox[{"4", " ", "#1"}], "+", 
+            RowBox[{"2", " ", "Kd", " ", "#1"}], "+", 
+            RowBox[{"3", " ", 
+             SuperscriptBox["#1", "2"]}]}]], "&"}]}], "]"}], " ", 
+       RowBox[{"RootSum", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"Ki", "+", 
+           RowBox[{"2", " ", "#1"}], "+", 
+           RowBox[{"Kp", " ", "#1"}], "+", 
+           RowBox[{"2", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           RowBox[{"Kd", " ", 
+            SuperscriptBox["#1", "2"]}], "+", 
+           SuperscriptBox["#1", "3"]}], "&"}], ",", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["\[ExponentialE]", 
+            RowBox[{
+             RowBox[{"-", "t"}], " ", "#1"}]], 
+           RowBox[{
+            RowBox[{
+             RowBox[{"-", "3"}], " ", "Ki"}], "-", 
+            RowBox[{"4", " ", "#1"}], "-", 
+            RowBox[{"2", " ", "Kp", " ", "#1"}], "-", 
+            RowBox[{"2", " ", 
+             SuperscriptBox["#1", "2"]}], "-", 
+            RowBox[{"Kd", " ", 
+             SuperscriptBox["#1", "2"]}]}]], "&"}]}], "]"}]}]}], ")"}]}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{
+  3.7966514117530274`*^9, {3.796651445400545*^9, 3.796651492693492*^9}, 
+   3.796651523793722*^9},
+ CellLabel->"Out[35]=",ExpressionUUID->"992c32c6-4c5f-4733-83c6-502963c773f9"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`Kd$$ = 
+    2.8000000000000003`, $CellContext`Ki$$ = 6., $CellContext`Kp$$ = 6.5, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"sin t\[IAcute]tulo\"", Typeset`specs$$ = {{
+      Hold[$CellContext`Kp$$], 0.1, 10}, {
+      Hold[$CellContext`Ki$$], 0.1, 10}, {
+      Hold[$CellContext`Kd$$], 0.1, 5}}, Typeset`size$$ = {
+    360., {108., 113.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`Kp$478239$$ = 
+    0, $CellContext`Ki$478240$$ = 0, $CellContext`Kd$478241$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`Kd$$ = 0.1, $CellContext`Ki$$ = 
+        0.1, $CellContext`Kp$$ = 0.1}, "ControllerVariables" :> {
+        Hold[$CellContext`Kp$$, $CellContext`Kp$478239$$, 0], 
+        Hold[$CellContext`Ki$$, $CellContext`Ki$478240$$, 0], 
+        Hold[$CellContext`Kd$$, $CellContext`Kd$478241$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> 
+      Plot[{((-$CellContext`Ki$$) 
+           RootSum[$CellContext`Ki$$ + 2 # + $CellContext`Kp$$ # + 
+             2 #^2 + $CellContext`Kd$$ #^2 + #^3& , E^($CellContext`t #)/(
+             2 + $CellContext`Kp$$ + 4 # + (2 $CellContext`Kd$$) # + 
+             3 #^2)& ]) 
+          RootSum[$CellContext`Ki$$ + 2 # + $CellContext`Kp$$ # + 
+            2 #^2 + $CellContext`Kd$$ #^2 + #^3& , 
+            E^((-$CellContext`t) #) (#/(2 + $CellContext`Kp$$ + 
+             4 # + (2 $CellContext`Kd$$) # + 3 #^2))& ] - ($CellContext`Ki$$ 
+          RootSum[$CellContext`Ki$$ + 2 # + $CellContext`Kp$$ # + 
+            2 #^2 + $CellContext`Kd$$ #^2 + #^3& , E^((-$CellContext`t) #)/(
+            2 + $CellContext`Kp$$ + 4 # + (2 $CellContext`Kd$$) # + 3 #^2)& ])
+           
+         RootSum[$CellContext`Ki$$ + 2 # + $CellContext`Kp$$ # + 
+           2 #^2 + $CellContext`Kd$$ #^2 + #^3& , (2 E^($CellContext`t #) + 
+            E^($CellContext`t #) $CellContext`Kd$$ + E^($CellContext`t #) #)/(
+           2 + $CellContext`Kp$$ + 4 # + (2 $CellContext`Kd$$) # + 3 #^2)& ] - 
+         RootSum[$CellContext`Ki$$ + 2 # + $CellContext`Kp$$ # + 
+          2 #^2 + $CellContext`Kd$$ #^2 + #^3& , (2 + $CellContext`Kp$$ + 
+            4 # + (2 $CellContext`Kd$$) # + 3 #^2)^(-1) (
+           2 E^($CellContext`t #) + 
+           E^($CellContext`t #) $CellContext`Kp$$ + (2 
+             E^($CellContext`t #)) # + (
+             E^($CellContext`t #) $CellContext`Kd$$) # + 
+           E^($CellContext`t #) #^2)& ] - ($CellContext`Ki$$ 
+          RootSum[$CellContext`Ki$$ + 2 # + $CellContext`Kp$$ # + 
+            2 #^2 + $CellContext`Kd$$ #^2 + #^3& , (2 + $CellContext`Kp$$ + 
+              4 # + (2 $CellContext`Kd$$) # + 3 #^2)^(-1) (
+             2 E^($CellContext`t #) + 
+             E^($CellContext`t #) $CellContext`Kp$$ + (2 
+               E^($CellContext`t #)) # + (
+               E^($CellContext`t #) $CellContext`Kd$$) # + 
+             E^($CellContext`t #) #^2)& ]) 
+         RootSum[$CellContext`Ki$$ + 2 # + $CellContext`Kp$$ # + 
+           2 #^2 + $CellContext`Kd$$ #^2 + #^3& , 
+           E^((-$CellContext`t) #)/((-3) $CellContext`Ki$$ - 
+           4 # - (2 $CellContext`Kp$$) # - 
+           2 #^2 - $CellContext`Kd$$ #^2)& ] + $CellContext`Kp$$ (
+           RootSum[$CellContext`Ki$$ + 2 # + $CellContext`Kp$$ # + 
+             2 #^2 + $CellContext`Kd$$ #^2 + #^3& , E^($CellContext`t #)/(
+             2 + $CellContext`Kp$$ + 4 # + (2 $CellContext`Kd$$) # + 
+             3 #^2)& ] - 
+           RootSum[$CellContext`Ki$$ + 2 # + $CellContext`Kp$$ # + 
+             2 #^2 + $CellContext`Kd$$ #^2 + #^3& , 
+             E^((-$CellContext`t) #) (#/(2 + $CellContext`Kp$$ + 
+              4 # + (2 $CellContext`Kd$$) # + 3 #^2))& ] 
+           RootSum[$CellContext`Ki$$ + 2 # + $CellContext`Kp$$ # + 
+             2 #^2 + $CellContext`Kd$$ #^2 + #^3& , 
+             E^($CellContext`t #) (#/(2 + $CellContext`Kp$$ + 
+              4 # + (2 $CellContext`Kd$$) # + 3 #^2))& ] - 
+           RootSum[$CellContext`Ki$$ + 2 # + $CellContext`Kp$$ # + 
+             2 #^2 + $CellContext`Kd$$ #^2 + #^3& , E^((-$CellContext`t) #)/(
+             2 + $CellContext`Kp$$ + 4 # + (2 $CellContext`Kd$$) # + 3 #^2)& ]
+             RootSum[$CellContext`Ki$$ + 2 # + $CellContext`Kp$$ # + 
+             2 #^2 + $CellContext`Kd$$ #^2 + #^3& , (2 + $CellContext`Kp$$ + 
+               4 # + (2 $CellContext`Kd$$) # + 
+               3 #^2)^(-1) ((2 E^($CellContext`t #)) # + (
+                E^($CellContext`t #) $CellContext`Kd$$) # + 
+              E^($CellContext`t #) #^2)& ] + ($CellContext`Ki$$ 
+             RootSum[$CellContext`Ki$$ + 2 # + $CellContext`Kp$$ # + 
+               2 #^2 + $CellContext`Kd$$ #^2 + #^3& , E^($CellContext`t #)/(
+               2 + $CellContext`Kp$$ + 4 # + (2 $CellContext`Kd$$) # + 
+               3 #^2)& ]) 
+            RootSum[$CellContext`Ki$$ + 2 # + $CellContext`Kp$$ # + 
+              2 #^2 + $CellContext`Kd$$ #^2 + #^3& , 
+              E^((-$CellContext`t) #)/((-3) $CellContext`Ki$$ - 
+              4 # - (2 $CellContext`Kp$$) # - 
+              2 #^2 - $CellContext`Kd$$ #^2)& ]) + $CellContext`Kd$$ (
+           RootSum[$CellContext`Ki$$ + 2 # + $CellContext`Kp$$ # + 
+             2 #^2 + $CellContext`Kd$$ #^2 + #^3& , 
+             E^($CellContext`t #) (#/(2 + $CellContext`Kp$$ + 
+              4 # + (2 $CellContext`Kd$$) # + 3 #^2))& ] - 
+           RootSum[$CellContext`Ki$$ + 2 # + $CellContext`Kp$$ # + 
+             2 #^2 + $CellContext`Kd$$ #^2 + #^3& , 
+             E^((-$CellContext`t) #) (#/(2 + $CellContext`Kp$$ + 
+              4 # + (2 $CellContext`Kd$$) # + 3 #^2))& ] 
+           RootSum[$CellContext`Ki$$ + 2 # + $CellContext`Kp$$ # + 
+             2 #^2 + $CellContext`Kd$$ #^2 + #^3& , 
+             E^($CellContext`t #) (#^2/(2 + $CellContext`Kp$$ + 
+              4 # + (2 $CellContext`Kd$$) # + 3 #^2))& ] + 
+           RootSum[$CellContext`Ki$$ + 2 # + $CellContext`Kp$$ # + 
+              2 #^2 + $CellContext`Kd$$ #^2 + #^3& , E^((-$CellContext`t) #)/(
+              2 + $CellContext`Kp$$ + 4 # + (2 $CellContext`Kd$$) # + 
+              3 #^2)& ] 
+            RootSum[$CellContext`Ki$$ + 2 # + $CellContext`Kp$$ # + 
+              2 #^2 + $CellContext`Kd$$ #^2 + #^3& , (
+               E^($CellContext`t #) $CellContext`Ki$$ + (2 
+                 E^($CellContext`t #)) # + (
+                 E^($CellContext`t #) $CellContext`Kp$$) #)/(
+              2 + $CellContext`Kp$$ + 4 # + (2 $CellContext`Kd$$) # + 
+              3 #^2)& ] + ($CellContext`Ki$$ 
+             RootSum[$CellContext`Ki$$ + 2 # + $CellContext`Kp$$ # + 
+               2 #^2 + $CellContext`Kd$$ #^2 + #^3& , 
+               E^($CellContext`t #) (#/(2 + $CellContext`Kp$$ + 
+                4 # + (2 $CellContext`Kd$$) # + 3 #^2))& ]) 
+            RootSum[$CellContext`Ki$$ + 2 # + $CellContext`Kp$$ # + 
+              2 #^2 + $CellContext`Kd$$ #^2 + #^3& , 
+              E^((-$CellContext`t) #)/((-3) $CellContext`Ki$$ - 
+              4 # - (2 $CellContext`Kp$$) # - 
+              2 #^2 - $CellContext`Kd$$ #^2)& ])}, {$CellContext`t, 0, 20}, 
+        PlotRange -> All], 
+      "Specifications" :> {{$CellContext`Kp$$, 0.1, 10}, {$CellContext`Ki$$, 
+         0.1, 10}, {$CellContext`Kd$$, 0.1, 5}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{411., {183., 189.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.7966514117530274`*^9, {3.796651445400545*^9, 3.796651492693492*^9}, 
+   3.7966515239136934`*^9, {3.796651675938825*^9, 3.796651677923132*^9}},
+ CellLabel->"Out[36]=",ExpressionUUID->"67b8c936-c2a7-4403-be01-5d30331f2407"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.7966516137237763`*^9, 
+  3.796651617692668*^9}},ExpressionUUID->"1f34462e-2722-45c5-aa82-\
+8b016d4a498c"]
+},
+WindowSize->{1536, 781},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 1534, 43, 124, "Input",ExpressionUUID->"77a33d84-024e-4624-bf91-180054563040"],
+Cell[2117, 67, 304, 7, 51, "Output",ExpressionUUID->"b4ad0ce9-ff20-4a6c-9c8f-75e886a3328e"],
+Cell[2424, 76, 332, 8, 52, "Output",ExpressionUUID->"36a09535-2f23-41e9-80af-99b406aa7ab4"],
+Cell[2759, 86, 568, 16, 56, "Output",ExpressionUUID->"66f8ba1b-3e7b-43d4-ac01-43d0f7de3449"],
+Cell[3330, 104, 3762, 81, 63, "Output",ExpressionUUID->"74122c85-8845-4d7f-8904-9010e2d7d9c7"],
+Cell[7095, 187, 19099, 527, 464, "Output",ExpressionUUID->"992c32c6-4c5f-4733-83c6-502963c773f9"],
+Cell[26197, 716, 8358, 144, 391, "Output",ExpressionUUID->"67b8c936-c2a7-4403-be01-5d30331f2407"]
+}, Open  ]],
+Cell[34570, 863, 154, 3, 28, "Input",ExpressionUUID->"1f34462e-2722-45c5-aa82-8b016d4a498c"]
+}
+]
+*)
+

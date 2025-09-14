@@ -1,0 +1,20 @@
+[
+{
+  "directory": "D:/code/28377d/pebsa/4_Sim/dll/output/build/lib",
+  "command": "C:\\qp\\qtools\\mingw32\\bin\\gcc.exe -DMYLIB_EXPORT -DMY_WINDOWS -Dlib_EXPORTS @CMakeFiles/lib.dir/includes_C.rsp -g -std=gnu11 -o CMakeFiles\\lib.dir\\lib.c.obj -c D:\\code\\28377d\\pebsa\\4_Sim\\dll\\lib\\lib.c",
+  "file": "D:/code/28377d/pebsa/4_Sim/dll/lib/lib.c",
+  "output": "lib/CMakeFiles/lib.dir/lib.c.obj"
+},
+{
+  "directory": "D:/code/28377d/pebsa/4_Sim/dll/output/build/module",
+  "command": "C:\\qp\\qtools\\mingw32\\bin\\gcc.exe -DMY_WINDOWS -Dlininterp_EXPORTS @CMakeFiles/lininterp.dir/includes_C.rsp -g -std=gnu99 -o CMakeFiles\\lininterp.dir\\lininterp\\lininterp.c.obj -c D:\\code\\28377d\\pebsa\\4_Sim\\dll\\module\\lininterp\\lininterp.c",
+  "file": "D:/code/28377d/pebsa/4_Sim/dll/module/lininterp/lininterp.c",
+  "output": "module/CMakeFiles/lininterp.dir/lininterp/lininterp.c.obj"
+},
+{
+  "directory": "D:/code/28377d/pebsa/4_Sim/dll/output/build/app",
+  "command": "C:\\qp\\qtools\\mingw32\\bin\\gcc.exe -DMY_WINDOWS @CMakeFiles/app.dir/includes_C.rsp -g -std=gnu11 -o CMakeFiles\\app.dir\\app.c.obj -c D:\\code\\28377d\\pebsa\\4_Sim\\dll\\app\\app.c",
+  "file": "D:/code/28377d/pebsa/4_Sim/dll/app/app.c",
+  "output": "app/CMakeFiles/app.dir/app.c.obj"
+}
+]
